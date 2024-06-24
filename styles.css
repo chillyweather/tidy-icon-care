@@ -1,0 +1,95 @@
+/* @font-face {
+  font-family: "haas-text";
+  src: url("fonts/NHaasGroteskTXPro-55Rg.ttf") format("truetype");
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 100vw;
+}
+
+.content {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.splash-content {
+  height: 350px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.missing {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.success-group {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon {
+  font-size: 150px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.success-text {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.button {
+  width: 100%;
+  color: white;
+  border-radius: 60px;
+  margin-bottom: 24px
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-buttons> :first-child {
+  display: flex;
+}
+
+@keyframes blinkAnim {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
