@@ -1,15 +1,15 @@
 import { vectorToOutline } from "./vectorToOutline";
 
-export function iconCoreFix(node: SceneNode) {
+export function iconCoreFix(node: SceneNode, iconSize: number) {
   let workingNode: SceneNode;
-  if (node.type === "COMPONENT") {
-    const inst = node.createInstance().detachInstance();
-    workingNode = groupToComponent(inst);
-    node.remove();
-  } else {
-    workingNode = groupToComponent(node);
-  }
 
+  if (node.type === "COMPONENT") {
+    resizeIconContent(node, iconSize);
+    return node;
+  } else {
+    workingNode = groupToComponent(node, iconSize);
+  }
+  //
   const vectorObj = workingNode.findAllWithCriteria({
     types: [
       "VECTOR",
@@ -23,6 +23,7 @@ export function iconCoreFix(node: SceneNode) {
   });
 
   vectorObj.forEach((vector) => {
+    if (vector.name === "ic") return;
     if (
       (vector.strokes as readonly Paint[]).length === 0 &&
       (vector.fills as readonly Paint[]).length === 0
@@ -32,39 +33,118 @@ export function iconCoreFix(node: SceneNode) {
       vectorToOutline(vector);
     }
   });
-
   workingNode.name = workingNode.name.toLowerCase();
-  if (
-    !(
-      workingNode.children.length === 1 &&
-      workingNode.children[0].type === "VECTOR" &&
-      workingNode.children[0].name === "ic"
-    )
-  ) {
-    figma.union(workingNode.children, workingNode);
-    const flatVector = figma.flatten(workingNode.children);
-  }
-  const flatVector = workingNode.children[0];
-  if (!flatVector || flatVector.type !== "VECTOR") return;
-  flatVector.name = "ic";
-  flatVector.constraints = {
-    horizontal: "SCALE",
-    vertical: "SCALE",
-  };
-  return workingNode;
+
+  const flattened = unionAndFlatten(workingNode);
+  resizeIconContent(flattened, iconSize);
+  return flattened;
 }
 
-function groupToComponent(node: any): ComponentNode {
+function isStrangeVector(node: any) {
+  if (node.children.length !== 1) return false;
+  const child = node.children[0];
+  return child.type === "VECTOR" && child.fillGeometry.length !== 1;
+}
+
+function unionAndFlatten(workingNode: ComponentNode) {
+  if (
+    workingNode.children[0].type === "BOOLEAN_OPERATION" ||
+    isStrangeVector(workingNode)
+  ) {
+    return workingNode;
+  }
+  const copy = workingNode.clone();
+  try {
+    workingNode.strokes = [];
+    figma.union(workingNode.children, workingNode);
+    figma.flatten(workingNode.children);
+    copy.remove();
+    return workingNode;
+  } catch (error) {
+    copy.fills = [{ type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } }];
+    return copy;
+  }
+}
+
+function groupToComponent(node: any, iconSize: number): ComponentNode {
   const wrapper = figma.createComponent();
-  wrapper.resize(node.width, node.height);
+  wrapper.resize(iconSize, iconSize);
   wrapper.x = node.x;
   wrapper.y = node.y;
   node.parent.appendChild(wrapper);
   wrapper.appendChild(node);
-  node.x = 0;
-  node.y = 0;
   wrapper.name = node.name;
   wrapper.fills = [];
-  figma.ungroup(node);
+  wrapper
+    .findAllWithCriteria({
+      types: ["FRAME", "GROUP"],
+    })
+    .forEach((group: any) => {
+      figma.ungroup(group);
+    });
+
   return wrapper;
+}
+
+function resizeIconContent(workingNode: any, iconSize: number) {
+  const flatVector = workingNode.children[0];
+
+  if (
+    flatVector &&
+    flatVector.type === "BOOLEAN_OPERATION" &&
+    flatVector.children &&
+    flatVector.children.length === 1
+  ) {
+    const child = flatVector.children[0];
+    if (
+      child &&
+      child.type === "VECTOR" &&
+      child.width === flatVector.width &&
+      child.height === flatVector.height
+    ) {
+      child.x = 0;
+      child.y = 0;
+    }
+  }
+  if (
+    !flatVector ||
+    (flatVector.type !== "VECTOR" && flatVector.type !== "BOOLEAN_OPERATION")
+  )
+    return;
+  if (flatVector.type === "BOOLEAN_OPERATION" && flatVector.children) {
+    flatVector.children.forEach((child: any) => {
+      if (child.type === "VECTOR") {
+        child.constraints = {
+          horizontal: "MIN",
+          vertical: "MIN",
+        };
+      }
+    });
+  }
+  flatVector.name = "ic";
+  if (iconSize === 16) {
+    const scale = 14 / Math.max(flatVector.width, flatVector.height);
+    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  } else if (iconSize === 20) {
+    const scale = 18 / Math.max(flatVector.width, flatVector.height);
+    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  } else if (iconSize === 24) {
+    const scale = 20 / Math.max(flatVector.width, flatVector.height);
+    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  } else if (iconSize === 32) {
+    const scale = 24 / Math.max(flatVector.width, flatVector.height);
+    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  }
+  flatVector.x = workingNode.width / 2 - flatVector.width / 2;
+  flatVector.y = workingNode.height / 2 - flatVector.height / 2;
+  try {
+    flatVector.constraints = {
+      horizontal: "SCALE",
+      vertical: "SCALE",
+    };
+  } catch (error) {
+    workingNode.fills = [
+      { type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } },
+    ];
+  }
 }

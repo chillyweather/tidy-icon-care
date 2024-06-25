@@ -17,8 +17,9 @@ function buildIconColumn(
 
   const opacityValue = cleanOpacityValue(opacity);
   const hexColorValue = addOpacityToHex(hexColor, opacityValue);
+  const iconSizeValue = iconSize.replace(/[\D]+$/, "");
 
-  const selectedElements = iconize(selection as any, iconSize);
+  const selectedElements = iconize(selection as any, +iconSizeValue);
   if (!selectedElements?.length) return;
 
   const bounds = computeMaximumBounds(selectedElements);
@@ -28,6 +29,14 @@ function buildIconColumn(
     if (!vector) return;
 
     if (vector.fills[0].type === "SOLID") {
+      figma.variables.setBoundVariableForPaint(vector.fills[0], "color", null);
+      const fillsCopy = JSON.parse(JSON.stringify(vector.fills));
+      fillsCopy[0] = figma.variables.setBoundVariableForPaint(
+        fillsCopy[0],
+        "color",
+        null
+      );
+      vector.fills = fillsCopy;
       const updated = figma.util.solidPaint(
         `#${hexColorValue}`,
         vector.fills[0]
@@ -123,7 +132,6 @@ function buildIconColumn(
           row.name = "icon+label";
           newColumn.appendChild(row);
         });
-        console.log("rowDist :>> ", rowDist);
         newColumn.itemSpacing = rowDist;
         iconFrame.appendChild(newColumn);
       });
@@ -132,9 +140,9 @@ function buildIconColumn(
       selectionParent?.appendChild(iconFrame);
       iconFrame.x = bounds[0].x;
       iconFrame.y = bounds[0].y;
-      label.remove();
     }
   }
+  label.remove();
 }
 
 function createColumn() {

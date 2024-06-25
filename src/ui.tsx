@@ -115,10 +115,6 @@ function Plugin() {
     };
   }, [handleClick]);
 
-  useEffect(() => {
-    console.log("iconSize", iconSize);
-  }, [iconSize]);
-
   const LayoutSettings = useMemo(() => {
     const rowStyle = {
       display: "flex",

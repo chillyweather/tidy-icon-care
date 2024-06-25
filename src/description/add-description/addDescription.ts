@@ -27,7 +27,7 @@ export default function addComponenetDescription(
       }
     });
 
-    let guideLines = `📝This icon **${element.name}** is used for...\n🎨 #${hexColor}`;
+    let guideLines = `📝This element **${element.name}** is used for...\n🎨 #${hexColor}`;
     let misprint = `---------------------------------------------------- misprint: ${newName.join(
       ""
     )}`;

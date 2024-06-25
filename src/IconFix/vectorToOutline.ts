@@ -1,8 +1,23 @@
 export function vectorToOutline(vector: any) {
-  if (vector.strokes.length > 0 && vector.strokeWeight !== 0) {
+  if (
+    vector.strokes.length > 0 &&
+    vector.strokeWeight !== 0 &&
+    vector.vectorPaths
+  ) {
     const parent = vector.parent;
-    const outlinedStroke = vector.outlineStroke();
-    parent.appendChild(outlinedStroke);
-    vector.remove();
+    let outlinedStroke = outlineStroke(vector);
+
+    if (
+      outlinedStroke.vectorPaths.length &&
+      outlinedStroke.fillGeometry.length
+    ) {
+      parent.appendChild(outlinedStroke);
+      vector.remove();
+    }
   }
+}
+
+function outlineStroke(vector: any) {
+  let outlinedStroke = vector.outlineStroke();
+  return outlinedStroke;
 }
