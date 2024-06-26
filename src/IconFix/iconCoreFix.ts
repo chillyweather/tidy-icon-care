@@ -60,7 +60,8 @@ function isStrangeVector(node: any) {
 function unionAndFlatten(workingNode: ComponentNode) {
   if (
     (workingNode.children.length === 1 &&
-      workingNode.children[0].type === "BOOLEAN_OPERATION") ||
+      workingNode.children[0].type === "BOOLEAN_OPERATION" &&
+      workingNode.children[0].children.length === 1) ||
     isStrangeVector(workingNode)
   ) {
     return workingNode;
