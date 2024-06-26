@@ -80,13 +80,19 @@
   justify-content: center;
 }
 
-.primary{
-  background-color: #000000;
-  transform: scale(.5);
-}
-
 .radio-buttons> :first-child {
   display: flex;
+}
+
+.primary {
+  background-color: hotpink;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.primary:hover{
+  opacity: 0.8;
 }
 
 @keyframes blinkAnim {
