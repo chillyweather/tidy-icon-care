@@ -194,11 +194,9 @@ function Plugin() {
         </div>
         <VerticalSpace space="extraLarge" />
         <Button
+        className={"primary"}
           fullWidth
           onClick={() => handleClick()}
-          style={{
-            backgroundColor: "#0280C4",
-          }}
         >
           Build Icon Grid
         </Button>

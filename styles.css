@@ -80,6 +80,11 @@
   justify-content: center;
 }
 
+.primary{
+  background-color: #000000 !important;
+  transform: scale(.5);
+}
+
 .radio-buttons> :first-child {
   display: flex;
 }
