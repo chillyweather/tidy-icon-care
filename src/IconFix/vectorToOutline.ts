@@ -1,5 +1,6 @@
 export function vectorToOutline(vector: any) {
   if (
+    vector.strokes &&
     vector.strokes.length > 0 &&
     vector.strokeWeight !== 0 &&
     vector.vectorPaths
@@ -8,6 +9,8 @@ export function vectorToOutline(vector: any) {
     let outlinedStroke = outlineStroke(vector);
 
     if (
+      outlinedStroke.vectorPaths &&
+      outlinedStroke.fillGeometry &&
       outlinedStroke.vectorPaths.length &&
       outlinedStroke.fillGeometry.length
     ) {
