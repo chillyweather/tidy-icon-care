@@ -22,7 +22,7 @@ import {
   scaleIconContentAtom,
 } from "./atoms";
 
-import "../styles.css";
+import "!../styles.css";
 
 function Plugin() {
   const [rows, setRows] = useState<string>("");
