@@ -193,13 +193,12 @@ function Plugin() {
           <CheckBoxElement label="" />
         </div>
         <VerticalSpace space="extraLarge" />
-        <Button
+        <button
         className={"primary"}
-          fullWidth
           onClick={() => handleClick()}
         >
           Build Icon Grid
-        </Button>
+        </button>
       </div>
     );
   }, [
