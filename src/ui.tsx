@@ -212,15 +212,12 @@ function Plugin() {
           <CheckBoxElement label="" type="metadata" />
         </div>
         <VerticalSpace space="extraLarge" />
-        <Button
-          fullWidth
+        <button
+        className={"primary"}
           onClick={() => handleClick()}
-          style={{
-            backgroundColor: "#0280C4",
-          }}
         >
           Build Icon Grid
-        </Button>
+        </button>
       </div>
     );
   }, [
