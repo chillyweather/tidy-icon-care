@@ -921,10 +921,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/a9713cf4-4f71-4293-b66a-f51e73747706/icon.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/ef537fc7-77a9-4c5b-a5fa-414f47b8c4b8/icon.module.js
   var icon_module_default;
   var init_icon_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/a9713cf4-4f71-4293-b66a-f51e73747706/icon.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/ef537fc7-77a9-4c5b-a5fa-414f47b8c4b8/icon.module.js"() {
       if (document.getElementById("dc02135b3f") === null) {
         const element = document.createElement("style");
         element.id = "dc02135b3f";
@@ -970,10 +970,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/1bbcdde7-721c-4a65-985c-2d3633950e2c/checkbox.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/2cb16b89-3827-4a43-8ccf-f609d05fa4ad/checkbox.module.js
   var checkbox_module_default;
   var init_checkbox_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/1bbcdde7-721c-4a65-985c-2d3633950e2c/checkbox.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/2cb16b89-3827-4a43-8ccf-f609d05fa4ad/checkbox.module.js"() {
       if (document.getElementById("6237cf661a") === null) {
         const element = document.createElement("style");
         element.id = "6237cf661a";
@@ -1106,10 +1106,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/8ac83344-f54a-4a46-a2ab-39158a54bdfe/menu.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c2af9e03-38f8-4f89-8e46-3e0ae81f0c89/menu.module.js
   var menu_module_default;
   var init_menu_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/8ac83344-f54a-4a46-a2ab-39158a54bdfe/menu.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c2af9e03-38f8-4f89-8e46-3e0ae81f0c89/menu.module.js"() {
       if (document.getElementById("feff1c39bd") === null) {
         const element = document.createElement("style");
         element.id = "feff1c39bd";
@@ -1347,10 +1347,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/ab54a5f4-264e-4889-bf32-3f54df19d75c/dropdown.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/7f85a1a0-0165-411b-898f-42ec7e4a59b1/dropdown.module.js
   var dropdown_module_default;
   var init_dropdown_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/ab54a5f4-264e-4889-bf32-3f54df19d75c/dropdown.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/7f85a1a0-0165-411b-898f-42ec7e4a59b1/dropdown.module.js"() {
       if (document.getElementById("55ac5a9f54") === null) {
         const element = document.createElement("style");
         element.id = "55ac5a9f54";
@@ -1824,10 +1824,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c4c534ef-d1a8-4168-b7eb-61681e6bcb55/text.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/eb202054-9a50-46a5-804f-c2241737a3f8/text.module.js
   var text_module_default;
   var init_text_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c4c534ef-d1a8-4168-b7eb-61681e6bcb55/text.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/eb202054-9a50-46a5-804f-c2241737a3f8/text.module.js"() {
       if (document.getElementById("238d83c03b") === null) {
         const element = document.createElement("style");
         element.id = "238d83c03b";
@@ -2740,10 +2740,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/788b407e-382c-48e3-9d45-4437eaf3b8d4/textbox-color.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/cee40f0b-73e1-4d13-9ad8-2fec70e0a0b3/textbox-color.module.js
   var textbox_color_module_default;
   var init_textbox_color_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/788b407e-382c-48e3-9d45-4437eaf3b8d4/textbox-color.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/cee40f0b-73e1-4d13-9ad8-2fec70e0a0b3/textbox-color.module.js"() {
       if (document.getElementById("666649c84e") === null) {
         const element = document.createElement("style");
         element.id = "666649c84e";
@@ -3083,10 +3083,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/734500b2-6219-451f-9529-d7e1b8672a45/textbox.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/a4ae4b80-2314-4262-87b8-7888350fe512/textbox.module.js
   var textbox_module_default;
   var init_textbox_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/734500b2-6219-451f-9529-d7e1b8672a45/textbox.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/a4ae4b80-2314-4262-87b8-7888350fe512/textbox.module.js"() {
       if (document.getElementById("99779e653e") === null) {
         const element = document.createElement("style");
         element.id = "99779e653e";
@@ -3179,10 +3179,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/5aac001c-768f-49e4-84ea-0a1391276b41/textbox-numeric.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/cc6fa17d-5057-41b2-a683-dd5afe566aa2/textbox-numeric.module.js
   var textbox_numeric_module_default;
   var init_textbox_numeric_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/5aac001c-768f-49e4-84ea-0a1391276b41/textbox-numeric.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/cc6fa17d-5057-41b2-a683-dd5afe566aa2/textbox-numeric.module.js"() {
       if (document.getElementById("6e6ae6a589") === null) {
         const element = document.createElement("style");
         element.id = "6e6ae6a589";
@@ -3233,10 +3233,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/0ddbbc80-29f4-4edb-81fe-7db5db23d6f2/container.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/01b6d50a-e4bb-43f6-8d06-cdd34f8b1d55/container.module.js
   var container_module_default;
   var init_container_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/0ddbbc80-29f4-4edb-81fe-7db5db23d6f2/container.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/01b6d50a-e4bb-43f6-8d06-cdd34f8b1d55/container.module.js"() {
       if (document.getElementById("d4a44170fa") === null) {
         const element = document.createElement("style");
         element.id = "d4a44170fa";
@@ -3277,10 +3277,10 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c865b2d2-4678-44a9-bda3-76f61ab802fc/vertical-space.module.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/4b413164-c985-47ce-8c6a-21f011a6dcb6/vertical-space.module.js
   var vertical_space_module_default;
   var init_vertical_space_module = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/c865b2d2-4678-44a9-bda3-76f61ab802fc/vertical-space.module.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/4b413164-c985-47ce-8c6a-21f011a6dcb6/vertical-space.module.js"() {
       if (document.getElementById("3fc7dd0ef1") === null) {
         const element = document.createElement("style");
         element.id = "3fc7dd0ef1";
@@ -3321,9 +3321,9 @@
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/03370923-058e-4bd6-a640-46b465e5d38e/base.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/f73dd936-a814-4c08-9a56-bd62db33d0a9/base.js
   var init_base = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/03370923-058e-4bd6-a640-46b465e5d38e/base.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/f73dd936-a814-4c08-9a56-bd62db33d0a9/base.js"() {
       if (document.getElementById("00b88882b1") === null) {
         const element = document.createElement("style");
         element.id = "00b88882b1";
@@ -4174,7 +4174,7 @@ svg {
   });
 
   // src/atoms.ts
-  var hexColorAtom, opacityAtom, iconSizeAtom, addMetaDataAtom;
+  var hexColorAtom, opacityAtom, iconSizeAtom, addMetaDataAtom, scaleIconContentAtom;
   var init_atoms = __esm({
     "src/atoms.ts"() {
       "use strict";
@@ -4183,6 +4183,7 @@ svg {
       opacityAtom = atom("100");
       iconSizeAtom = atom("24px");
       addMetaDataAtom = atom(false);
+      scaleIconContentAtom = atom(false);
     }
   });
 
@@ -4269,8 +4270,8 @@ svg {
   });
 
   // src/IconFix/CheckBox.tsx
-  function CheckBox_default({ label }) {
-    const [value2, setValue] = useAtom(addMetaDataAtom);
+  function CheckBox_default({ label, type }) {
+    const [value2, setValue] = type === "metadata" ? useAtom(addMetaDataAtom) : useAtom(scaleIconContentAtom);
     function handleChange(event) {
       const newValue = event.currentTarget.checked;
       setValue(newValue);
@@ -4287,9 +4288,9 @@ svg {
     }
   });
 
-  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/3283de10-154e-44ce-8c54-1aa721b05e48/styles.js
+  // ../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/e5e4db8b-b9a4-43bf-9d1c-515b9ec01fb0/styles.js
   var init_styles = __esm({
-    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/3283de10-154e-44ce-8c54-1aa721b05e48/styles.js"() {
+    "../../../../../private/var/folders/40/_xl72_9910xbjf1hp062bgq00000gn/T/e5e4db8b-b9a4-43bf-9d1c-515b9ec01fb0/styles.js"() {
       if (document.getElementById("d4a49a4d78") === null) {
         const element = document.createElement("style");
         element.id = "d4a49a4d78";
@@ -4413,6 +4414,7 @@ svg {
     const [opacity, setOpacity] = useAtom(opacityAtom);
     const [iconSize, setIconSize] = useAtom(iconSizeAtom);
     const [addMetaData, setAddMetaData] = useAtom(addMetaDataAtom);
+    const [scaleIconContent, setScaleIconContent] = useAtom(scaleIconContentAtom);
     const handleRowInput = x2((e3) => {
       setRows(e3.target.value);
     }, []);
@@ -4434,7 +4436,8 @@ svg {
         hexColor,
         opacity,
         iconSize,
-        addMetaData
+        addMetaData,
+        scaleIconContent
       };
       emit("SEND", data);
     }, [
@@ -4445,7 +4448,8 @@ svg {
       hexColor,
       opacity,
       iconSize,
-      addMetaData
+      addMetaData,
+      scaleIconContent
     ]);
     const handleSavedData = x2(
       (data) => {
@@ -4458,6 +4462,7 @@ svg {
           setOpacity(data.opacity || "100");
           setIconSize(data.iconSize || "24px");
           setAddMetaData(data.addMetaData || false);
+          setScaleIconContent(data.scaleIconContent || false);
         }
       },
       []
@@ -4481,11 +4486,17 @@ svg {
         alignItems: "center",
         justifyContent: "space-between"
       };
-      const checkBoxRowStyle = {
+      const metadataCheckBoxRowStyle = {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
         gap: "50px"
+      };
+      const scaleCheckBoxRowStyle = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        gap: "28px"
       };
       return /* @__PURE__ */ _("div", { style: { display: "flex", flexDirection: "column" } }, /* @__PURE__ */ _("div", { style: rowStyle }, /* @__PURE__ */ _(Text, null, "Rows"), /* @__PURE__ */ _(
         TextboxNumeric,
@@ -4527,7 +4538,7 @@ svg {
           variant: "border",
           style: { width: "144px" }
         }
-      )), /* @__PURE__ */ _(VerticalSpace, { space: "extraLarge" }), /* @__PURE__ */ _("div", { style: rowStyle }, /* @__PURE__ */ _(Text, null, "Icon color"), /* @__PURE__ */ _(ColorPicker_default, null)), /* @__PURE__ */ _(VerticalSpace, { space: "small" }), /* @__PURE__ */ _("div", { style: rowStyle }, /* @__PURE__ */ _(Text, null, "Icon size"), /* @__PURE__ */ _(Dropdown_default, null)), /* @__PURE__ */ _(VerticalSpace, { space: "small" }), /* @__PURE__ */ _("div", { style: checkBoxRowStyle }, /* @__PURE__ */ _(Text, null, "Add metadata"), /* @__PURE__ */ _(CheckBox_default, { label: "" })), /* @__PURE__ */ _(VerticalSpace, { space: "extraLarge" }), /* @__PURE__ */ _(
+      )), /* @__PURE__ */ _(VerticalSpace, { space: "extraLarge" }), /* @__PURE__ */ _("div", { style: rowStyle }, /* @__PURE__ */ _(Text, null, "Icon color"), /* @__PURE__ */ _(ColorPicker_default, null)), /* @__PURE__ */ _(VerticalSpace, { space: "small" }), /* @__PURE__ */ _("div", { style: rowStyle }, /* @__PURE__ */ _(Text, null, "Icon size"), /* @__PURE__ */ _(Dropdown_default, null)), /* @__PURE__ */ _(VerticalSpace, { space: "medium" }), /* @__PURE__ */ _("div", { style: scaleCheckBoxRowStyle }, /* @__PURE__ */ _(Text, null, "Scale icon content"), /* @__PURE__ */ _(CheckBox_default, { label: "", type: "scale" })), /* @__PURE__ */ _(VerticalSpace, { space: "medium" }), /* @__PURE__ */ _("div", { style: metadataCheckBoxRowStyle }, /* @__PURE__ */ _(Text, null, "Add metadata"), /* @__PURE__ */ _(CheckBox_default, { label: "", type: "metadata" })), /* @__PURE__ */ _(VerticalSpace, { space: "extraLarge" }), /* @__PURE__ */ _(
         "button",
         {
           className: "primary",
