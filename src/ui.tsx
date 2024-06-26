@@ -19,6 +19,7 @@ import {
   opacityAtom,
   iconSizeAtom,
   addMetaDataAtom,
+  scaleIconContentAtom,
 } from "./atoms";
 
 import "../styles.css";
@@ -32,6 +33,7 @@ function Plugin() {
   const [opacity, setOpacity] = useAtom(opacityAtom);
   const [iconSize, setIconSize] = useAtom(iconSizeAtom);
   const [addMetaData, setAddMetaData] = useAtom(addMetaDataAtom);
+  const [scaleIconContent, setScaleIconContent] = useAtom(scaleIconContentAtom);
 
   const handleRowInput = useCallback((e: any) => {
     setRows(e.target.value);
@@ -59,6 +61,7 @@ function Plugin() {
       opacity: opacity,
       iconSize: iconSize,
       addMetaData: addMetaData,
+      scaleIconContent: scaleIconContent,
     };
     emit("SEND", data);
   }, [
@@ -70,6 +73,7 @@ function Plugin() {
     opacity,
     iconSize,
     addMetaData,
+    scaleIconContent,
   ]);
 
   const handleSavedData = useCallback(
@@ -82,6 +86,7 @@ function Plugin() {
       opacity: string;
       iconSize: string;
       addMetaData: boolean;
+      scaleIconContent: boolean;
     }) => {
       if (data) {
         setRows(data.rows || 10);
@@ -92,6 +97,7 @@ function Plugin() {
         setOpacity(data.opacity || "100");
         setIconSize(data.iconSize || "24px");
         setAddMetaData(data.addMetaData || false);
+        setScaleIconContent(data.scaleIconContent || false);
       }
     },
     []
@@ -121,11 +127,19 @@ function Plugin() {
       alignItems: "center",
       justifyContent: "space-between",
     };
-    const checkBoxRowStyle = {
+
+    const metadataCheckBoxRowStyle = {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-start",
       gap: "50px",
+    };
+
+    const scaleCheckBoxRowStyle = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      gap: "28px",
     };
 
     return (
@@ -187,10 +201,15 @@ function Plugin() {
           <Text>Icon size</Text>
           <SizeDropdown />
         </div>
-        <VerticalSpace space="small" />
-        <div style={checkBoxRowStyle}>
+        <VerticalSpace space="medium" />
+        <div style={scaleCheckBoxRowStyle}>
+          <Text>Scale icon content</Text>
+          <CheckBoxElement label="" type="scale" />
+        </div>
+        <VerticalSpace space="medium" />
+        <div style={metadataCheckBoxRowStyle}>
           <Text>Add metadata</Text>
-          <CheckBoxElement label="" />
+          <CheckBoxElement label="" type="metadata" />
         </div>
         <VerticalSpace space="extraLarge" />
         <button

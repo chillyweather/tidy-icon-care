@@ -1,10 +1,14 @@
 import { vectorToOutline } from "./vectorToOutline";
 
-export function iconCoreFix(node: SceneNode, iconSize: number) {
+export function iconCoreFix(
+  node: SceneNode,
+  iconSize: number,
+  scaleIconContent: boolean
+) {
   let workingNode: SceneNode;
 
   if (node.type === "COMPONENT") {
-    resizeIconContent(node, iconSize);
+    resizeIconContent(node, iconSize, scaleIconContent);
     return node;
   } else {
     workingNode = groupToComponent(node, iconSize);
@@ -30,13 +34,14 @@ export function iconCoreFix(node: SceneNode, iconSize: number) {
     ) {
       vector.remove();
     } else {
+      if (vector.type === "BOOLEAN_OPERATION") return;
       vectorToOutline(vector);
     }
   });
   workingNode.name = workingNode.name.toLowerCase();
 
   const flattened = unionAndFlatten(workingNode);
-  resizeIconContent(flattened, iconSize);
+  resizeIconContent(flattened, iconSize, scaleIconContent);
   return flattened;
 }
 
@@ -48,19 +53,26 @@ function isStrangeVector(node: any) {
 
 function unionAndFlatten(workingNode: ComponentNode) {
   if (
-    workingNode.children[0].type === "BOOLEAN_OPERATION" ||
+    (workingNode.children.length === 1 &&
+      workingNode.children[0].type === "BOOLEAN_OPERATION") ||
     isStrangeVector(workingNode)
   ) {
     return workingNode;
   }
   const copy = workingNode.clone();
   try {
+    //!
     workingNode.strokes = [];
+    workingNode.children.forEach((child) => {
+      console.log(child, child.x, child.y);
+    });
     figma.union(workingNode.children, workingNode);
+
     figma.flatten(workingNode.children);
     copy.remove();
     return workingNode;
   } catch (error) {
+    console.log("error", error);
     copy.fills = [{ type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } }];
     return copy;
   }
@@ -86,7 +98,11 @@ function groupToComponent(node: any, iconSize: number): ComponentNode {
   return wrapper;
 }
 
-function resizeIconContent(workingNode: any, iconSize: number) {
+function resizeIconContent(
+  workingNode: any,
+  iconSize: number,
+  scaleIconContent: boolean
+) {
   const flatVector = workingNode.children[0];
 
   if (
@@ -122,18 +138,20 @@ function resizeIconContent(workingNode: any, iconSize: number) {
     });
   }
   flatVector.name = "ic";
-  if (iconSize === 16) {
-    const scale = 14 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 20) {
-    const scale = 18 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 24) {
-    const scale = 20 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 32) {
-    const scale = 24 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  if (scaleIconContent) {
+    if (iconSize === 16) {
+      const scale = 14 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 20) {
+      const scale = 18 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 24) {
+      const scale = 20 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 32) {
+      const scale = 24 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    }
   }
   flatVector.x = workingNode.width / 2 - flatVector.width / 2;
   flatVector.y = workingNode.height / 2 - flatVector.height / 2;
