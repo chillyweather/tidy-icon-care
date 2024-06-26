@@ -1,6 +1,6 @@
 import { iconCoreFix } from "./iconCoreFix";
 
-function iconize(nodes: any[], iconSize: number) {
+function iconize(nodes: any[], iconSize: number, scaleIconContent: boolean) {
   if (nodes[0] === undefined) {
     figma.notify("please, select an icon, uncertainity kills me!");
     figma.closePlugin();
@@ -14,7 +14,7 @@ function iconize(nodes: any[], iconSize: number) {
     if (node.type === "INSTANCE") {
       workingNode = node.detachInstance();
     }
-    const convertedFrame = iconCoreFix(workingNode, iconSize);
+    const convertedFrame = iconCoreFix(workingNode, iconSize, scaleIconContent);
 
     result.push(convertedFrame);
   }

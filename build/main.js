@@ -255,8 +255,17 @@ function vectorToOutline(vector) {
   }
 }
 function outlineStroke(vector) {
-  let outlinedStroke = vector.outlineStroke();
-  return outlinedStroke;
+  const parent = vector.parent;
+  if (vector.strokes.length > 0 && vector.strokeWeight !== 0) {
+    const xPos = vector.x;
+    const yPos = vector.y;
+    const outlinedStroke = vector.outlineStroke();
+    parent.appendChild(outlinedStroke);
+    outlinedStroke.x = xPos;
+    outlinedStroke.y = yPos;
+    vector.remove();
+  }
+  return parent;
 }
 var init_vectorToOutline = __esm({
   "src/IconFix/vectorToOutline.ts"() {
@@ -265,10 +274,10 @@ var init_vectorToOutline = __esm({
 });
 
 // src/IconFix/iconCoreFix.ts
-function iconCoreFix(node, iconSize) {
+function iconCoreFix(node, iconSize, scaleIconContent) {
   let workingNode;
   if (node.type === "COMPONENT") {
-    resizeIconContent(node, iconSize);
+    resizeIconContent(node, iconSize, scaleIconContent);
     return node;
   } else {
     workingNode = groupToComponent(node, iconSize);
@@ -290,12 +299,14 @@ function iconCoreFix(node, iconSize) {
     if (vector.strokes.length === 0 && vector.fills.length === 0) {
       vector.remove();
     } else {
+      if (vector.type === "BOOLEAN_OPERATION")
+        return;
       vectorToOutline(vector);
     }
   });
   workingNode.name = workingNode.name.toLowerCase();
   const flattened = unionAndFlatten(workingNode);
-  resizeIconContent(flattened, iconSize);
+  resizeIconContent(flattened, iconSize, scaleIconContent);
   return flattened;
 }
 function isStrangeVector(node) {
@@ -305,17 +316,21 @@ function isStrangeVector(node) {
   return child.type === "VECTOR" && child.fillGeometry.length !== 1;
 }
 function unionAndFlatten(workingNode) {
-  if (workingNode.children[0].type === "BOOLEAN_OPERATION" || isStrangeVector(workingNode)) {
+  if (workingNode.children.length === 1 && workingNode.children[0].type === "BOOLEAN_OPERATION" || isStrangeVector(workingNode)) {
     return workingNode;
   }
   const copy = workingNode.clone();
   try {
     workingNode.strokes = [];
+    workingNode.children.forEach((child) => {
+      console.log(child, child.x, child.y);
+    });
     figma.union(workingNode.children, workingNode);
     figma.flatten(workingNode.children);
     copy.remove();
     return workingNode;
   } catch (error) {
+    console.log("error", error);
     copy.fills = [{ type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } }];
     return copy;
   }
@@ -336,7 +351,7 @@ function groupToComponent(node, iconSize) {
   });
   return wrapper;
 }
-function resizeIconContent(workingNode, iconSize) {
+function resizeIconContent(workingNode, iconSize, scaleIconContent) {
   const flatVector = workingNode.children[0];
   if (flatVector && flatVector.type === "BOOLEAN_OPERATION" && flatVector.children && flatVector.children.length === 1) {
     const child = flatVector.children[0];
@@ -358,18 +373,20 @@ function resizeIconContent(workingNode, iconSize) {
     });
   }
   flatVector.name = "ic";
-  if (iconSize === 16) {
-    const scale = 14 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 20) {
-    const scale = 18 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 24) {
-    const scale = 20 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
-  } else if (iconSize === 32) {
-    const scale = 24 / Math.max(flatVector.width, flatVector.height);
-    flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+  if (scaleIconContent) {
+    if (iconSize === 16) {
+      const scale = 14 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 20) {
+      const scale = 18 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 24) {
+      const scale = 20 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    } else if (iconSize === 32) {
+      const scale = 24 / Math.max(flatVector.width, flatVector.height);
+      flatVector.resize(flatVector.width * scale, flatVector.height * scale);
+    }
   }
   flatVector.x = workingNode.width / 2 - flatVector.width / 2;
   flatVector.y = workingNode.height / 2 - flatVector.height / 2;
@@ -392,7 +409,7 @@ var init_iconCoreFix = __esm({
 });
 
 // src/IconFix/iconize.ts
-function iconize(nodes, iconSize) {
+function iconize(nodes, iconSize, scaleIconContent) {
   if (nodes[0] === void 0) {
     figma.notify("please, select an icon, uncertainity kills me!");
     figma.closePlugin();
@@ -404,7 +421,7 @@ function iconize(nodes, iconSize) {
     if (node.type === "INSTANCE") {
       workingNode = node.detachInstance();
     }
-    const convertedFrame = iconCoreFix(workingNode, iconSize);
+    const convertedFrame = iconCoreFix(workingNode, iconSize, scaleIconContent);
     result.push(convertedFrame);
   }
   return result;
@@ -571,12 +588,16 @@ var init_addDescription = __esm({
 });
 
 // src/content/buildIconGrid.ts
-function buildIconColumn(rows, iconDist, rowDist, columnDist, hexColor, opacity, iconSize, addMetaData) {
+function buildIconColumn(rows, iconDist, rowDist, columnDist, hexColor, opacity, iconSize, addMetaData, scaleIconContent) {
   const selection = figma.currentPage.selection;
   const opacityValue = cleanOpacityValue(opacity);
   const hexColorValue = addOpacityToHex(hexColor, opacityValue);
   const iconSizeValue = iconSize.replace(/[\D]+$/, "");
-  const selectedElements = iconize(selection, +iconSizeValue);
+  const selectedElements = iconize(
+    selection,
+    +iconSizeValue,
+    scaleIconContent
+  );
   if (!(selectedElements == null ? void 0 : selectedElements.length))
     return;
   const bounds = computeMaximumBounds(selectedElements);
@@ -735,7 +756,8 @@ async function code_default() {
       hexColor,
       opacity,
       iconSize,
-      addMetaData
+      addMetaData,
+      scaleIconContent
     }) {
       buildIconGrid_default(
         +rows,
@@ -745,7 +767,8 @@ async function code_default() {
         hexColor,
         opacity,
         iconSize,
-        addMetaData
+        addMetaData,
+        scaleIconContent
       );
       savePluginData(
         localData,
@@ -756,12 +779,13 @@ async function code_default() {
         hexColor,
         opacity,
         iconSize,
-        addMetaData
+        addMetaData,
+        scaleIconContent
       );
     }
   );
 }
-function savePluginData(localData, rows, iconSpacing, rowSpacing, columnSpacing, hexColor, opacity, iconSize, addMetaData) {
+function savePluginData(localData, rows, iconSpacing, rowSpacing, columnSpacing, hexColor, opacity, iconSize, addMetaData, scaleIconContent) {
   localData.rows = rows;
   localData.iconSpacing = iconSpacing;
   localData.rowSpacing = rowSpacing;
@@ -770,6 +794,7 @@ function savePluginData(localData, rows, iconSpacing, rowSpacing, columnSpacing,
   localData.opacity = opacity;
   localData.iconSize = iconSize;
   localData.addMetaData = addMetaData;
+  localData.scaleIconContent = scaleIconContent;
   figma.clientStorage.setAsync("params", localData);
 }
 var loadFonts;
@@ -781,7 +806,7 @@ var init_code = __esm({
     loadFonts = async () => {
       await figma.loadFontAsync({ family: "Inter", style: "Regular" });
     };
-    showUI({ height: 404, width: 300 });
+    showUI({ height: 436, width: 300 });
   }
 });
 
@@ -789,3 +814,4 @@ var init_code = __esm({
 var modules = { "src/code.ts--default": (init_code(), __toCommonJS(code_exports))["default"] };
 var commandId = true ? "src/code.ts--default" : figma.command;
 modules[commandId]();
+//!

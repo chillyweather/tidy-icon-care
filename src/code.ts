@@ -24,6 +24,7 @@ export default async function () {
       opacity,
       iconSize,
       addMetaData,
+      scaleIconContent,
     }: {
       rows: string;
       iconSpacing: string;
@@ -33,6 +34,7 @@ export default async function () {
       opacity: string;
       iconSize: string;
       addMetaData: boolean;
+      scaleIconContent: boolean;
     }) {
       buildIconColumn(
         +rows,
@@ -42,7 +44,8 @@ export default async function () {
         hexColor,
         opacity,
         iconSize,
-        addMetaData
+        addMetaData,
+        scaleIconContent
       );
 
       savePluginData(
@@ -54,13 +57,14 @@ export default async function () {
         hexColor,
         opacity,
         iconSize,
-        addMetaData
+        addMetaData,
+        scaleIconContent
       );
     }
   );
 }
 
-showUI({ height: 404, width: 300 });
+showUI({ height: 436, width: 300 });
 
 function savePluginData(
   localData?: any,
@@ -71,7 +75,8 @@ function savePluginData(
   hexColor?: string,
   opacity?: string,
   iconSize?: string,
-  addMetaData?: boolean
+  addMetaData?: boolean,
+  scaleIconContent?: boolean
 ): void {
   localData.rows = rows;
   localData.iconSpacing = iconSpacing;
@@ -81,5 +86,6 @@ function savePluginData(
   localData.opacity = opacity;
   localData.iconSize = iconSize;
   localData.addMetaData = addMetaData;
+  localData.scaleIconContent = scaleIconContent;
   figma.clientStorage.setAsync("params", localData);
 }

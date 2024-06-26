@@ -11,7 +11,8 @@ function buildIconColumn(
   hexColor: string,
   opacity: string,
   iconSize: string,
-  addMetaData: boolean
+  addMetaData: boolean,
+  scaleIconContent: boolean
 ) {
   const selection = figma.currentPage.selection;
 
@@ -19,7 +20,11 @@ function buildIconColumn(
   const hexColorValue = addOpacityToHex(hexColor, opacityValue);
   const iconSizeValue = iconSize.replace(/[\D]+$/, "");
 
-  const selectedElements = iconize(selection as any, +iconSizeValue);
+  const selectedElements = iconize(
+    selection as any,
+    +iconSizeValue,
+    scaleIconContent
+  );
   if (!selectedElements?.length) return;
 
   const bounds = computeMaximumBounds(selectedElements);
