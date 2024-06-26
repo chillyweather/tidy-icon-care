@@ -33,7 +33,7 @@ function buildIconColumn(
     const vector = element.children[0] as any;
     if (!vector) return;
 
-    if (vector.fills[0].type === "SOLID") {
+    if (vector.fills[0] && vector.fills[0].type === "SOLID") {
       figma.variables.setBoundVariableForPaint(vector.fills[0], "color", null);
       const fillsCopy = JSON.parse(JSON.stringify(vector.fills));
       fillsCopy[0] = figma.variables.setBoundVariableForPaint(

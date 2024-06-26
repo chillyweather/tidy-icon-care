@@ -1,4 +1,9 @@
 import { vectorToOutline } from "./vectorToOutline";
+import {
+  ERROR_COLOR,
+  FLATTENING_ERROR_COLOR,
+  SETTING_CONSTRAINTS_ERROR_COLOR,
+} from "../content/constants";
 
 export function iconCoreFix(
   node: SceneNode,
@@ -34,7 +39,8 @@ export function iconCoreFix(
     ) {
       vector.remove();
     } else {
-      if (vector.type === "BOOLEAN_OPERATION") return;
+      if (vector.type === "BOOLEAN_OPERATION" && vector.children.length === 1)
+        return;
       vectorToOutline(vector);
     }
   });
@@ -61,8 +67,6 @@ function unionAndFlatten(workingNode: ComponentNode) {
   }
   const copy = workingNode.clone();
   try {
-    //!
-    workingNode.strokes = [];
     workingNode.children.forEach((child) => {
       console.log(child, child.x, child.y);
     });
@@ -72,8 +76,8 @@ function unionAndFlatten(workingNode: ComponentNode) {
     copy.remove();
     return workingNode;
   } catch (error) {
-    console.log("error", error);
-    copy.fills = [{ type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } }];
+    console.log("error in union and flatten");
+    copy.fills = [{ type: "SOLID", color: FLATTENING_ERROR_COLOR }];
     return copy;
   }
 }
@@ -161,8 +165,9 @@ function resizeIconContent(
       vertical: "SCALE",
     };
   } catch (error) {
+    console.log("error in setting constraints");
     workingNode.fills = [
-      { type: "SOLID", color: { r: 0.996, g: 0.576, b: 0.729 } },
+      { type: "SOLID", color: SETTING_CONSTRAINTS_ERROR_COLOR },
     ];
   }
 }

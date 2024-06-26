@@ -85,13 +85,14 @@
 }
 
 .primary {
-  background-color: hotpink;
+  background-color: orangered;
   color: white;
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
 }
-.primary:hover{
+
+.primary:hover {
   opacity: 0.8;
 }
 
