@@ -13,8 +13,13 @@ export function iconCoreFix(
   let workingNode: SceneNode;
 
   if (node.type === "COMPONENT") {
-    resizeIconContent(node, iconSize, scaleIconContent);
-    return node;
+    const instance = node.createInstance();
+    instance.x = node.x;
+    instance.y = node.y;
+    workingNode = groupToComponent(instance.detachInstance(), iconSize);
+    node.remove();
+    // resizeIconContent(node, iconSize, scaleIconContent);
+    // return node;
   } else {
     workingNode = groupToComponent(node, iconSize);
   }
@@ -55,6 +60,14 @@ function isStrangeVector(node: any) {
   if (node.children.length !== 1) return false;
   const child = node.children[0];
   return child.type === "VECTOR" && child.fillGeometry.length !== 1;
+}
+
+function isNormalBooleanNode(node: any) {
+  return (
+    node.children.length === 1 &&
+    node.children[0].type === "BOOLEAN_OPERATION" &&
+    node.children[0].children.length === 1
+  );
 }
 
 function unionAndFlatten(workingNode: ComponentNode) {
