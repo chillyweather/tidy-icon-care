@@ -20,16 +20,17 @@ function buildIconColumn(
   const hexColorValue = addOpacityToHex(hexColor, opacityValue);
   const iconSizeValue = iconSize.replace(/[\D]+$/, "");
 
-  const selectedElements = iconize(
-    selection as any,
-    +iconSizeValue,
-    scaleIconContent
-  );
+  // const selectedElements = iconize(
+  //   selection as any,
+  //   +iconSizeValue,
+  //   scaleIconContent
+  // );
+  const selectedElements = selection as any;
   if (!selectedElements?.length) return;
 
   const bounds = computeMaximumBounds(selectedElements);
 
-  selectedElements.forEach((element) => {
+  selectedElements.forEach((element: any) => {
     const vector = element.children[0] as any;
     if (!vector) return;
 
@@ -63,17 +64,17 @@ function buildIconColumn(
     return +cleanedValue / 100;
   }
 
-  if (addMetaData) {
-    addComponenetDescription(
-      selectedElements,
-      true,
-      "🟣 To do",
-      true,
-      true,
-      "replace",
-      hexColor
-    );
-  }
+  // if (addMetaData) {
+  //   addComponenetDescription(
+  //     selectedElements,
+  //     true,
+  //     "🟣 To do",
+  //     true,
+  //     true,
+  //     "replace",
+  //     hexColor
+  //   );
+  // }
 
   const label = figma.createComponent();
   const labelTextNode = figma.createText();
@@ -103,7 +104,7 @@ function buildIconColumn(
 
   if (selectedElements.length > 1) {
     const rows: any = [];
-    selectedElements.forEach((item) => {
+    selectedElements.forEach((item: any) => {
       rows.push(item);
     });
 
