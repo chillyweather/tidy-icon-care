@@ -22,6 +22,7 @@ export function vectorToOutline(vector: any) {
 
 function outlineStroke(vector: any) {
   const parent = vector.parent;
+  console.log("parent", parent);
   if (vector.strokes.length > 0 && vector.strokeWeight !== 0) {
     const xPos = vector.x;
     const yPos = vector.y;
@@ -30,6 +31,8 @@ function outlineStroke(vector: any) {
     outlinedStroke.x = xPos;
     outlinedStroke.y = yPos;
     vector.remove();
+  } else {
+    throw new Error("No stroke to outline");
   }
   return parent;
 }

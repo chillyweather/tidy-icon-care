@@ -6,6 +6,7 @@ const loadFonts = async () => {
 };
 
 export default async function () {
+  showUI({ height: 436, width: 300 });
   await loadFonts();
   const saveData = await figma.clientStorage.getAsync("params");
   if (saveData) {
@@ -15,7 +16,7 @@ export default async function () {
 
   on(
     "SEND",
-    async function setData({
+    async function ({
       rows,
       iconSpacing,
       rowSpacing,
@@ -63,8 +64,6 @@ export default async function () {
     }
   );
 }
-
-showUI({ height: 436, width: 300 });
 
 function savePluginData(
   localData?: any,

@@ -18,12 +18,10 @@ export function iconCoreFix(
     instance.y = node.y;
     workingNode = groupToComponent(instance.detachInstance(), iconSize);
     node.remove();
-    // resizeIconContent(node, iconSize, scaleIconContent);
-    // return node;
   } else {
     workingNode = groupToComponent(node, iconSize);
   }
-  //
+
   const vectorObj = workingNode.findAllWithCriteria({
     types: [
       "VECTOR",
@@ -51,6 +49,7 @@ export function iconCoreFix(
   });
   workingNode.name = workingNode.name.toLowerCase();
 
+  // const flattened = workingNode;
   const flattened = unionAndFlatten(workingNode);
   resizeIconContent(flattened, iconSize, scaleIconContent);
   return flattened;
@@ -71,21 +70,15 @@ function isNormalBooleanNode(node: any) {
 }
 
 function unionAndFlatten(workingNode: ComponentNode) {
-  if (
-    (workingNode.children.length === 1 &&
-      workingNode.children[0].type === "BOOLEAN_OPERATION" &&
-      workingNode.children[0].children.length === 1) ||
-    isStrangeVector(workingNode)
-  ) {
+  if (isNormalBooleanNode(workingNode) || isStrangeVector(workingNode)) {
     return workingNode;
   }
   const copy = workingNode.clone();
   try {
     workingNode.children.forEach((child) => {
-      console.log(child, child.x, child.y);
+      figma.flatten([child]);
     });
     figma.union(workingNode.children, workingNode);
-
     figma.flatten(workingNode.children);
     copy.remove();
     return workingNode;
@@ -102,7 +95,18 @@ function groupToComponent(node: any, iconSize: number): ComponentNode {
   wrapper.x = node.x;
   wrapper.y = node.y;
   node.parent.appendChild(wrapper);
-  wrapper.appendChild(node);
+  if (node.children && node.children.length > 1) {
+    node.children.forEach((child: any) => {
+      const xPos = child.x;
+      const yPos = child.y;
+      wrapper.appendChild(child);
+      child.x = xPos;
+      child.y = yPos;
+    });
+    figma.ungroup(node);
+  } else {
+    wrapper.appendChild(node);
+  }
   wrapper.name = node.name;
   wrapper.fills = [];
   wrapper
