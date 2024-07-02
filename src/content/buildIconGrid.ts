@@ -1,5 +1,5 @@
 import { attachLabelToIcon } from "./attachLabelToIcon";
-import { iconize } from "../IconFix/iconize";
+import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
 import { computeMaximumBounds } from "@create-figma-plugin/utilities";
 
@@ -20,36 +20,75 @@ function buildIconColumn(
   const hexColorValue = addOpacityToHex(hexColor, opacityValue);
   const iconSizeValue = iconSize.replace(/[\D]+$/, "");
 
-  // const selectedElements = iconize(
-  //   selection as any,
-  //   +iconSizeValue,
-  //   scaleIconContent
-  // );
   const selectedElements = selection as any;
   if (!selectedElements?.length) return;
 
   const bounds = computeMaximumBounds(selectedElements);
 
-  selectedElements.forEach((element: any) => {
-    const vector = element.children[0] as any;
-    if (!vector) return;
+  // selectedElements.forEach((element: any) => {
+  //   if (!element.children) {
+  //     console.log("applied color to child");
+  //     if (element.fills.length && element.fills[0].type === "SOLID") {
+  //       applyVectorColor(element, "fill", hexColorValue);
+  //     }
+  //     if (element.strokes.length && element.strokes[0].type === "SOLID") {
+  //       applyVectorColor(element, "stroke", hexColorValue);
+  //     } else {
+  //       return;
+  //     }
+  //   } else {
+  //     element.children.forEach((child: any) => {
+  //       if (child.fills.length && child.fills[0].type === "SOLID") {
+  //         applyVectorColor(child, "fill", hexColorValue);
+  //       }
+  //       if (child.strokes.length && child.strokes[0].type === "SOLID") {
+  //         applyVectorColor(child, "stroke", hexColorValue);
+  //       } else {
+  //         return;
+  //       }
+  //     });
+  //   }
+  // });
 
-    if (vector.fills[0] && vector.fills[0].type === "SOLID") {
-      figma.variables.setBoundVariableForPaint(vector.fills[0], "color", null);
-      const fillsCopy = JSON.parse(JSON.stringify(vector.fills));
-      fillsCopy[0] = figma.variables.setBoundVariableForPaint(
-        fillsCopy[0],
+  function applyVectorColor(
+    vector: VectorNode,
+    type: "fill" | "stroke",
+    hexColorValue: string
+  ) {
+    const property = type === "fill" ? "fills" : "strokes";
+
+    removeBoundVariables(vector, property);
+
+    const paintsCopy = JSON.parse(JSON.stringify(vector[property]));
+    paintsCopy[0] = figma.variables.setBoundVariableForPaint(
+      paintsCopy[0],
+      "color",
+      null
+    );
+    vector[property] = paintsCopy;
+
+    const updatedPaint = figma.util.solidPaint(
+      `#${hexColorValue}`,
+      //@ts-ignore
+      vector[property][0]
+    );
+    vector[property] = [updatedPaint];
+  }
+
+  function removeBoundVariables(
+    node: VectorNode,
+    property: "fills" | "strokes"
+  ) {
+    //@ts-ignore
+    if (node[property].length > 0) {
+      figma.variables.setBoundVariableForPaint(
+        //@ts-ignore
+        node[property][0],
         "color",
         null
       );
-      vector.fills = fillsCopy;
-      const updated = figma.util.solidPaint(
-        `#${hexColorValue}`,
-        vector.fills[0]
-      );
-      vector.fills = [updated];
     }
-  });
+  }
 
   function addOpacityToHex(hex: string, opacity: number): string {
     opacity = Math.max(0, Math.min(1, opacity));
@@ -63,18 +102,6 @@ function buildIconColumn(
     const cleanedValue = input.replace(/[\D]+$/, "");
     return +cleanedValue / 100;
   }
-
-  // if (addMetaData) {
-  //   addComponenetDescription(
-  //     selectedElements,
-  //     true,
-  //     "🟣 To do",
-  //     true,
-  //     true,
-  //     "replace",
-  //     hexColor
-  //   );
-  // }
 
   const label = figma.createComponent();
   const labelTextNode = figma.createText();
@@ -148,6 +175,44 @@ function buildIconColumn(
       iconFrame.y = bounds[0].y;
     }
   }
+  selectedElements.forEach((icon: any) => {
+    let workingNode = icon;
+    if (icon.type === "INSTANCE") {
+      workingNode = icon.detachInstance();
+    }
+    const fixedNode = iconCoreFix(
+      workingNode,
+      +iconSizeValue,
+      scaleIconContent
+    );
+
+    if (addMetaData) {
+      addComponenetDescription(
+        [fixedNode],
+        true,
+        "🟣 To do",
+        true,
+        true,
+        "replace",
+        hexColor
+      );
+    }
+
+    console.log("[fixedNode]", fixedNode);
+    const parent = fixedNode.parent;
+    parent?.insertChild(0, fixedNode);
+
+    fixedNode.children.forEach((child: any) => {
+      if (child.fills.length && child.fills[0].type === "SOLID") {
+        applyVectorColor(child, "fill", hexColorValue);
+      }
+      if (child.strokes.length && child.strokes[0].type === "SOLID") {
+        applyVectorColor(child, "stroke", hexColorValue);
+      } else {
+        return;
+      }
+    });
+  });
   label.remove();
 }
 

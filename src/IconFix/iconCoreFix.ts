@@ -79,16 +79,17 @@ function isStrangeVector(node: SceneNode): boolean {
   );
 }
 
-function isNormalBooleanNode(node: SceneNode): boolean {
+function isNormalBooleanNode(node: any): boolean {
   return (
-    "children" in node &&
+    node.children &&
     node.children.length === 1 &&
-    node.children[0].type === "BOOLEAN_OPERATION" &&
-    node.children[0].children.length === 1
+    node.children[0].type === "BOOLEAN_OPERATION"
   );
 }
 
 function unionAndFlatten(workingNode: ComponentNode): ComponentNode {
+  console.log("workingNode", workingNode);
+  console.log("isNormalBooleanNode", isNormalBooleanNode(workingNode));
   if (isNormalBooleanNode(workingNode) || isStrangeVector(workingNode)) {
     return workingNode;
   }
@@ -115,7 +116,11 @@ function groupToComponent(node: SceneNode, iconSize: number): ComponentNode {
   wrapper.y = node.y;
   node.parent!.appendChild(wrapper);
 
-  if ("children" in node && node.children.length > 1) {
+  if (
+    "children" in node &&
+    node.children.length > 1 &&
+    node.type !== "BOOLEAN_OPERATION"
+  ) {
     node.children.forEach((child) => {
       const { x, y } = child;
       wrapper.appendChild(child);
