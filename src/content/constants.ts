@@ -4,6 +4,12 @@ export const ERROR_COLOR = {
   b: 0.18144531548023224,
 };
 
+export const OUTLINE_ERROR_COLOR = {
+  r: 1,
+  g: 0.4796331226825714,
+  b: 0.18144531548023224,
+};
+
 export const FLATTENING_ERROR_COLOR = {
   r: 1,
   g: 0.18144531548023224,

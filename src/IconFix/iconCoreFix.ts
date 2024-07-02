@@ -3,7 +3,17 @@ import {
   ERROR_COLOR,
   FLATTENING_ERROR_COLOR,
   SETTING_CONSTRAINTS_ERROR_COLOR,
+  OUTLINE_ERROR_COLOR,
 } from "../content/constants";
+
+type BuildingErrorType =
+  | "outlineError"
+  | "uniteError"
+  | "flattenError"
+  | "constraintsError"
+  | null;
+
+let BUILDING_ERROR: BuildingErrorType = null;
 
 const ICON_SIZES = {
   SMALL: 16,
@@ -36,6 +46,57 @@ export function iconCoreFix(
     workingNode = groupToComponent(node, iconSize);
   }
 
+  workingNode.name = workingNode.name.toLowerCase();
+  outlineVectors(workingNode);
+
+  const flattened = unionAndFlatten(workingNode);
+
+  if (BUILDING_ERROR) {
+    resizeIconContent(flattened, iconSize, scaleIconContent);
+    setErrorBackground(flattened);
+    BUILDING_ERROR = null;
+    return flattened;
+  } else {
+    resizeIconContent(flattened, iconSize, scaleIconContent);
+    return flattened;
+  }
+}
+
+//=================================================================//
+
+function setErrorBackground(copy: ComponentNode) {
+  if (BUILDING_ERROR === "outlineError") {
+    copy.fills = [
+      {
+        type: "SOLID",
+        color: OUTLINE_ERROR_COLOR,
+      },
+    ];
+  } else if (BUILDING_ERROR === "uniteError") {
+    copy.fills = [
+      {
+        type: "SOLID",
+        color: FLATTENING_ERROR_COLOR,
+      },
+    ];
+  } else if (BUILDING_ERROR === "flattenError") {
+    copy.fills = [
+      {
+        type: "SOLID",
+        color: FLATTENING_ERROR_COLOR,
+      },
+    ];
+  } else if (BUILDING_ERROR === "constraintsError") {
+    copy.fills = [
+      {
+        type: "SOLID",
+        color: SETTING_CONSTRAINTS_ERROR_COLOR,
+      },
+    ];
+  }
+}
+
+function outlineVectors(workingNode: ComponentNode) {
   const vectorObj = workingNode.findAllWithCriteria({
     types: [
       "VECTOR",
@@ -48,25 +109,24 @@ export function iconCoreFix(
     ],
   });
 
-  vectorObj.forEach((vector) => {
-    if (vector.name === "ic") return;
-    if (
-      (vector.strokes as readonly Paint[]).length === 0 &&
-      (vector.fills as readonly Paint[]).length === 0
-    ) {
-      vector.remove();
-      return;
-    }
-    if (vector.type === "BOOLEAN_OPERATION" && vector.children.length === 1)
-      return;
-    vectorToOutline(vector);
-  });
-
-  workingNode.name = workingNode.name.toLowerCase();
-
-  const flattened = unionAndFlatten(workingNode);
-  resizeIconContent(flattened, iconSize, scaleIconContent);
-  return flattened;
+  try {
+    vectorObj.forEach((vector) => {
+      if (vector.name === "ic") return;
+      if (
+        (vector.strokes as readonly Paint[]).length === 0 &&
+        (vector.fills as readonly Paint[]).length === 0
+      ) {
+        vector.remove();
+        return;
+      }
+      if (vector.type === "BOOLEAN_OPERATION" && vector.children.length === 1)
+        return;
+      vectorToOutline(vector);
+    });
+  } catch (error) {
+    console.log("Outline error:", error);
+    BUILDING_ERROR = "outlineError";
+  }
 }
 
 function isStrangeVector(node: SceneNode): boolean {
@@ -88,24 +148,32 @@ function isNormalBooleanNode(node: any): boolean {
 }
 
 function unionAndFlatten(workingNode: ComponentNode): ComponentNode {
-  console.log("workingNode", workingNode);
-  console.log("isNormalBooleanNode", isNormalBooleanNode(workingNode));
   if (isNormalBooleanNode(workingNode) || isStrangeVector(workingNode)) {
     return workingNode;
   }
 
-  const copy = workingNode.clone();
   try {
-    workingNode.children.forEach((child) => figma.flatten([child]));
-    figma.union(workingNode.children as VectorNode[], workingNode);
-    figma.flatten(workingNode.children as VectorNode[]);
-    copy.remove();
-    return workingNode;
+    const booleanChildren = workingNode.findAllWithCriteria({
+      types: ["BOOLEAN_OPERATION"],
+    });
+    if (booleanChildren.length === 0) {
+      figma.union(workingNode.children as VectorNode[], workingNode);
+    } else {
+      throw new Error("Boolean children found");
+    }
   } catch (error) {
-    console.log("Error in union and flatten:", error);
-    copy.fills = [{ type: "SOLID", color: FLATTENING_ERROR_COLOR }];
-    return copy;
+    console.log("Error in union:", error);
+    BUILDING_ERROR = "uniteError";
   }
+
+  try {
+    // workingNode.children.forEach((child) => figma.flatten([child]));
+    figma.flatten(workingNode.children as VectorNode[]);
+  } catch (error) {
+    console.log("Error in flatten:", error);
+    BUILDING_ERROR = "flattenError";
+  }
+  return workingNode;
 }
 
 function groupToComponent(node: SceneNode, iconSize: number): ComponentNode {
@@ -127,7 +195,8 @@ function groupToComponent(node: SceneNode, iconSize: number): ComponentNode {
       child.x = x;
       child.y = y;
     });
-    figma.ungroup(node as FrameNode | GroupNode);
+    if (isUngroupableNodeValid(node))
+      figma.ungroup(node as FrameNode | GroupNode);
   } else {
     wrapper.appendChild(node);
   }
@@ -138,6 +207,26 @@ function groupToComponent(node: SceneNode, iconSize: number): ComponentNode {
     .forEach((group) => figma.ungroup(group as FrameNode | GroupNode));
 
   return wrapper;
+}
+
+type UngroupableNode =
+  | FrameNode
+  | GroupNode
+  | ComponentNode
+  | ComponentSetNode
+  | InstanceNode
+  | SectionNode;
+
+function isUngroupableNodeValid(
+  node: UngroupableNode | null | undefined
+): boolean {
+  if (!node) return false;
+  if (node.removed) return false;
+  if (!node.parent) return false;
+  if (!["FRAME", "GROUP", "COMPONENT", "COMPONENT_SET"].includes(node.type))
+    return false;
+  if (node.type === "GROUP" && node.children.length === 0) return false;
+  return true;
 }
 
 function resizeIconContent(
@@ -172,13 +261,6 @@ function resizeIconContent(
   flatVector.x = workingNode.width / 2 - flatVector.width / 2;
   flatVector.y = workingNode.height / 2 - flatVector.height / 2;
 
-  try {
-    //@ts-ignore
+  if (flatVector.type === "VECTOR")
     flatVector.constraints = { horizontal: "SCALE", vertical: "SCALE" };
-  } catch (error) {
-    console.log("Error in setting constraints:", error);
-    workingNode.fills = [
-      { type: "SOLID", color: SETTING_CONSTRAINTS_ERROR_COLOR },
-    ];
-  }
 }
