@@ -4,13 +4,17 @@ import addComponenetDescription from "../description/add-description/addDescript
 import { computeMaximumBounds } from "@create-figma-plugin/utilities";
 import { splitArray } from "./splitArray";
 
-interface IconColumnOptions {
+export interface IconColumnOptions {
   rows: number;
-  iconDist: number;
-  rowDist: number;
-  columnDist: number;
-  hexColor: string;
-  opacity: string;
+  spacing: {
+    icon: number;
+    row: number;
+    column: number;
+  };
+  color: {
+    hex: string;
+    opacity: string;
+  };
   iconSize: string;
   addMetaData: boolean;
   scaleIconContent: boolean;
@@ -19,11 +23,8 @@ interface IconColumnOptions {
 function buildIconColumn(options: IconColumnOptions): void {
   const {
     rows,
-    iconDist,
-    rowDist,
-    columnDist,
-    hexColor,
-    opacity,
+    spacing: { icon: iconDist, row: rowDist, column: columnDist },
+    color: { hex: hexColor, opacity },
     iconSize,
     addMetaData,
     scaleIconContent,
