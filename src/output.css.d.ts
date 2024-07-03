@@ -8,10 +8,15 @@ declare const styles: {
   readonly "bg-slate-600": string;
   readonly "blinkAnim": string;
   readonly "border": string;
+  readonly "border-2": string;
+  readonly "border-solid": string;
+  readonly "border-stone-500": string;
   readonly "button": string;
   readonly "container": string;
   readonly "content": string;
   readonly "flex": string;
+  readonly "focus:border-2": string;
+  readonly "focus:outline-2": string;
   readonly "font-bold": string;
   readonly "font-medium": string;
   readonly "font-semibold": string;
@@ -19,6 +24,8 @@ declare const styles: {
   readonly "hover:bg-indigo-400": string;
   readonly "missing": string;
   readonly "outline": string;
+  readonly "outline-2": string;
+  readonly "outline-black": string;
   readonly "p-2": string;
   readonly "p-3": string;
   readonly "p-4": string;
