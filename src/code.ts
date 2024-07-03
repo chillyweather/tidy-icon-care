@@ -1,6 +1,5 @@
 import { emit, on, showUI } from "@create-figma-plugin/utilities";
 import buildIconColumn from "./gridBuilding/buildIconGrid";
-import { IconColumnOptions } from "./gridBuilding/buildIconGrid";
 
 const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
@@ -38,23 +37,17 @@ export default async function () {
       addMetaData: boolean;
       scaleIconContent: boolean;
     }) {
-      const options: IconColumnOptions = {
-        rows: parseInt(rows),
-        spacing: {
-          icon: parseInt(iconSpacing),
-          row: parseInt(rowSpacing),
-          column: parseInt(columnSpacing),
-        },
-        color: {
-          hex: hexColor,
-          opacity: opacity,
-        },
+      buildIconColumn(
+        +rows,
+        +iconSpacing,
+        +rowSpacing,
+        +columnSpacing,
+        hexColor,
+        opacity,
         iconSize,
         addMetaData,
-        scaleIconContent,
-      };
-
-      buildIconColumn(options);
+        scaleIconContent
+      );
 
       savePluginData(
         localData,
