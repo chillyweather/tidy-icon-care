@@ -213,10 +213,10 @@ function Plugin() {
         </div>
         <VerticalSpace space="extraLarge" />
         <button
-        className={"bg-slate-600"}
+        className={"bg-indigo-500 text-white p-3 text-lg rounded-lg hover:bg-indigo-400"}
           onClick={() => handleClick()}
         >
-          Build Icon Grid
+          Build icon grid
         </button>
       </div>
     );

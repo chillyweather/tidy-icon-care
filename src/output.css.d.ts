@@ -1,5 +1,8 @@
 declare const styles: {
   readonly "bg-black": string;
+  readonly "bg-blue-600": string;
+  readonly "bg-indigo-400": string;
+  readonly "bg-indigo-500": string;
   readonly "bg-slate-600": string;
   readonly "blinkAnim": string;
   readonly "border": string;
@@ -8,17 +11,27 @@ declare const styles: {
   readonly "content": string;
   readonly "flex": string;
   readonly "grid": string;
+  readonly "hover:bg-indigo-400": string;
   readonly "missing": string;
   readonly "outline": string;
+  readonly "p-2": string;
+  readonly "p-3": string;
+  readonly "p-4": string;
+  readonly "p-8": string;
   readonly "primary": string;
   readonly "radio-buttons": string;
   readonly "resize": string;
+  readonly "rounded": string;
+  readonly "rounded-lg": string;
   readonly "splash-content": string;
   readonly "success": string;
   readonly "success-group": string;
   readonly "success-icon": string;
   readonly "success-text": string;
   readonly "text-3xl": string;
+  readonly "text-lg": string;
+  readonly "text-white": string;
+  readonly "text-xl": string;
   readonly "visible": string;
 };
 export = styles;
