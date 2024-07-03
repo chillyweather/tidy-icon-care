@@ -22,7 +22,7 @@ import {
   scaleIconContentAtom,
 } from "./atoms";
 
-import "!../styles.css";
+import "!./output.css";
 
 function Plugin() {
   const [rows, setRows] = useState<string>("");
@@ -213,10 +213,10 @@ function Plugin() {
         </div>
         <VerticalSpace space="extraLarge" />
         <button
-        className={"primary"}
+        className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus:outline-4"}
           onClick={() => handleClick()}
         >
-          Build Icon Grid
+          Build icon grid
         </button>
       </div>
     );
@@ -242,7 +242,7 @@ function Plugin() {
           alignItems: "center",
         }}
       >
-        <h2 className={"title"}>Icon grid</h2>
+        <h2 className="font-medium text-sm text-slate-700">Some text</h2>
         <div
           style={{ display: "flex", alignItems: "center", gap: "4px" }}
         ></div>
