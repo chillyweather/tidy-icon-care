@@ -2,7 +2,7 @@ import { attachLabelToIcon } from "./attachLabelToIcon";
 import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
 import { computeMaximumBounds } from "@create-figma-plugin/utilities";
-import { splitArray } from "./splitArray";
+// import { splitArray } from "./splitArray";
 
 export interface IconColumnOptions {
   rows: number;
@@ -30,110 +30,85 @@ function buildIconColumn(options: IconColumnOptions): void {
     scaleIconContent,
   } = options;
 
+  const opacityValue = cleanOpacityValue(opacity);
+  const hexColorValue = addOpacityToHex(hexColor, opacityValue);
+
   const selection = figma.currentPage.selection;
   if (selection.length === 0) {
     figma.notify("Please select at least one element");
     return;
   }
 
-  let currentFrame: FrameNode | null = null;
-
-  const opacityValue = cleanOpacityValue(opacity);
-  const hexColorValue = addOpacityToHex(hexColor, opacityValue);
-  const iconSizeValue = iconSize.replace(/[\D]+$/, "");
-
   const selectedElements = selection as any;
-  if (!selectedElements?.length) return;
 
-  const bounds = computeMaximumBounds(selectedElements);
+  const [topLeft] = computeMaximumBounds(selectedElements);
+  const label = createLabelComponent();
 
-  const label = figma.createComponent();
-  const labelTextNode = figma.createText();
-  labelTextNode.characters = "Label";
-  label.appendChild(labelTextNode);
-  label.name = "label";
-  label.layoutMode = "HORIZONTAL";
-  label.layoutSizingVertical = "HUG";
+  const createdFrames: FrameNode[] = [];
+  const fixedIcons: ComponentNode[] = [];
 
-  if (!selectedElements) return;
-  const selectionParent = selectedElements[0].parent;
-  const limit = rows;
+  selection.forEach((node) => {
+    if (figma.getNodeById(node.id)) {
+      const iconPlusLabel = handleSingleNode(node, iconDist, label, topLeft);
+      const icon = iconPlusLabel?.children[0];
+      fixIconStructure(
+        [icon],
+        iconSize,
+        scaleIconContent,
+        addMetaData,
+        hexColor,
+        opacity,
+        fixedIcons
+      );
+      if (iconPlusLabel) {
+        createdFrames.push(iconPlusLabel);
+      }
+    }
+  });
 
-  const xP = selectedElements[0].x;
-  const yP = selectedElements[0].y;
-
-  if (selectedElements.length === 1) {
-    const iconPlusLabel = attachLabelToIcon(
-      selectedElements[0],
-      iconDist,
-      label.createInstance()
-    );
-    iconPlusLabel.x = xP;
-    iconPlusLabel.y = yP;
-    selectionParent?.appendChild(iconPlusLabel);
+  if (createdFrames.length > 1) {
+    handleMultipleNodes(createdFrames, rows, rowDist, columnDist, topLeft);
   }
 
-  if (selectedElements.length > 1) {
-    const rows: any = [];
-    selectedElements.forEach((item: any) => {
-      rows.push(item);
+  if (fixedIcons.length > 0) {
+    fixedIcons.forEach((component) => {
+      reColoringVectors(component, hexColor);
     });
-
-    const result = rows.sort((a: any, b: any) => {
-      let fa = a.name.toLowerCase(),
-        fb = b.name.toLowerCase();
-
-      if (fa < fb) {
-        return -1;
-      }
-      if (fa > fb) {
-        return 1;
-      }
-      return 0;
-    });
-
-    if (limit <= 0) return;
-
-    const iconFrame = figma.createFrame();
-    currentFrame = iconFrame;
-    iconFrame.layoutPositioning = "AUTO";
-    iconFrame.layoutMode = "HORIZONTAL";
-    iconFrame.counterAxisAlignItems = "MIN";
-    iconFrame.counterAxisSizingMode = "AUTO";
-    iconFrame.name = "icon frame";
-
-    const iconGrid = splitArray(result, limit);
-
-    iconGrid.forEach((group) => {
-      const newColumn = createColumn();
-      group.forEach((item: any) => {
-        const row = attachLabelToIcon(item, iconDist, label.createInstance());
-        row.name = "icon+label";
-        newColumn.appendChild(row);
-      });
-      newColumn.itemSpacing = rowDist;
-      iconFrame.appendChild(newColumn);
-    });
-    iconFrame.itemSpacing = columnDist;
-
-    selectionParent?.appendChild(iconFrame);
-    iconFrame.x = bounds[0].x;
-    iconFrame.y = bounds[0].y;
   }
-  selectedElements.forEach((icon: any) => {
+
+  selection.forEach((node) => {
+    if (figma.getNodeById(node.id)) {
+      node.remove();
+    }
+  });
+  label.remove();
+}
+
+function fixIconStructure(
+  elements: any[],
+  iconSize: string,
+  scaleIconContent: boolean,
+  addMetaData: boolean,
+  hexColor: string,
+  opacity: string,
+  fixedIcons: ComponentNode[]
+) {
+  const iconSizeValue = parseInt(iconSize);
+  elements.forEach((icon: any) => {
+    const parent = icon.parent;
+
     let workingNode = icon;
 
     if (icon.type === "INSTANCE") {
       workingNode = icon.detachInstance();
     }
 
-    const parent = workingNode.parent;
-
     const fixedNode = iconCoreFix(
       workingNode,
       +iconSizeValue,
       scaleIconContent
     );
+    fixedIcons.push(fixedNode);
 
     if (addMetaData) {
       addComponenetDescription(
@@ -147,21 +122,117 @@ function buildIconColumn(options: IconColumnOptions): void {
       );
     }
 
-    parent?.insertChild(0, fixedNode);
+    parent.insertChild(0, fixedNode);
+  });
+}
 
-    fixedNode.children.forEach((child: any) => {
-      console.log("coloring");
-      if (child.fills.length && child.fills[0].type === "SOLID") {
-        applyVectorColor(child, "fill", hexColorValue);
-      }
-      if (child.strokes.length && child.strokes[0].type === "SOLID") {
-        applyVectorColor(child, "stroke", hexColorValue);
-      } else {
-        return;
+function reColoringVectors(fixedNode: ComponentNode, hexColorValue: string) {
+  fixedNode.children.forEach((child: any) => {
+    console.log(child);
+    if (child.fills.length && child.fills[0].type === "SOLID") {
+      applyVectorColor(child, "fill", hexColorValue);
+    }
+    if (child.strokes.length && child.strokes[0].type === "SOLID") {
+      applyVectorColor(child, "stroke", hexColorValue);
+    } else {
+      return;
+    }
+  });
+}
+
+function createLabelComponent(): ComponentNode {
+  const label = figma.createComponent();
+  const labelTextNode = figma.createText();
+  labelTextNode.characters = "Label";
+  label.appendChild(labelTextNode);
+  label.name = "label";
+  label.layoutMode = "HORIZONTAL";
+  label.layoutSizingVertical = "HUG";
+  return label;
+}
+
+function handleSingleNode(
+  node: SceneNode,
+  iconDist: number,
+  labelComponent: ComponentNode,
+  position: Vector
+): FrameNode | null {
+  const iconPlusLabel = attachLabelToIcon(
+    node,
+    iconDist,
+    labelComponent.createInstance()
+  );
+  iconPlusLabel.x = position.x;
+  iconPlusLabel.y = position.y;
+
+  // Find a safe parent to append to
+  const safeParent = node.parent || figma.currentPage;
+
+  // Append the new structure
+  safeParent.appendChild(iconPlusLabel);
+
+  return iconPlusLabel;
+}
+
+function handleMultipleNodes(
+  selection: readonly FrameNode[],
+  rows: number,
+  rowDist: number,
+  columnDist: number,
+  position: Vector
+): void {
+  const sortedNodes = sortNodesByName(selection);
+  const iconGrid = splitArray(sortedNodes, rows);
+
+  const iconFrame = figma.createFrame();
+  iconFrame.name = "icon frame";
+  iconFrame.layoutPositioning = "AUTO";
+  iconFrame.layoutMode = "HORIZONTAL";
+  iconFrame.counterAxisAlignItems = "MIN";
+  iconFrame.counterAxisSizingMode = "AUTO";
+  iconFrame.itemSpacing = columnDist;
+
+  iconGrid.forEach((group) => {
+    const column = createColumn(rowDist);
+    group.forEach((node) => {
+      if (figma.getNodeById(node.id)) {
+        column.appendChild(node);
       }
     });
+    iconFrame.appendChild(column);
   });
-  label.remove();
+
+  figma.currentPage.appendChild(iconFrame);
+
+  iconFrame.x = position.x;
+  iconFrame.y = position.y;
+}
+
+function sortNodesByName(nodes: readonly FrameNode[]): SceneNode[] {
+  return [...nodes].sort((a, b) =>
+    a.children[0].name.localeCompare(b.children[0].name)
+  );
+}
+
+function splitArray<T>(array: T[], size: number): T[][] {
+  return array.reduce((result, item, index) => {
+    const chunkIndex = Math.floor(index / size);
+    if (!result[chunkIndex]) {
+      result[chunkIndex] = [];
+    }
+    result[chunkIndex].push(item);
+    return result;
+  }, [] as T[][]);
+}
+
+function createColumn(rowDist: number): FrameNode {
+  const column = figma.createFrame();
+  column.name = "column";
+  column.layoutPositioning = "AUTO";
+  column.layoutMode = "VERTICAL";
+  column.counterAxisSizingMode = "AUTO";
+  column.itemSpacing = rowDist;
+  return column;
 }
 
 type ColorType = "fill" | "stroke";
@@ -229,14 +300,14 @@ function cleanOpacityValue(input: string): number {
   return +cleanedValue / 100;
 }
 
-function createColumn() {
-  const iconColumn = figma.createFrame();
-  iconColumn.layoutPositioning = "AUTO";
-  iconColumn.layoutMode = "VERTICAL";
-  iconColumn.counterAxisAlignItems = "MIN";
-  iconColumn.counterAxisSizingMode = "AUTO";
-  iconColumn.name = "icon column";
-  return iconColumn;
-}
+// function createColumn() {
+//   const iconColumn = figma.createFrame();
+//   iconColumn.layoutPositioning = "AUTO";
+//   iconColumn.layoutMode = "VERTICAL";
+//   iconColumn.counterAxisAlignItems = "MIN";
+//   iconColumn.counterAxisSizingMode = "AUTO";
+//   iconColumn.name = "icon column";
+//   return iconColumn;
+// }
 
 export default buildIconColumn;
