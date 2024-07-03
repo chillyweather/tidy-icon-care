@@ -729,6 +729,10 @@ video {
   outline-color: #000;
 }
 
+.outline-blue-200 {
+  outline-color: #bfdbfe;
+}
+
 /* @font-face {
   font-family: "haas-text";
   src: url("fonts/NHaasGroteskTXPro-55Rg.ttf") format("truetype");

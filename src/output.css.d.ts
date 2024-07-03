@@ -26,6 +26,7 @@ declare const styles: {
   readonly "outline": string;
   readonly "outline-2": string;
   readonly "outline-black": string;
+  readonly "outline-blue-200": string;
   readonly "p-2": string;
   readonly "p-3": string;
   readonly "p-4": string;
