@@ -46,6 +46,7 @@ declare const styles: {
   readonly "text-3xl": string;
   readonly "text-base": string;
   readonly "text-lg": string;
+  readonly "text-slate-700": string;
   readonly "text-sm": string;
   readonly "text-white": string;
   readonly "text-xl": string;
