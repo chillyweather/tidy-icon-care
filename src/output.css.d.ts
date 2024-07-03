@@ -1,8 +1,10 @@
 declare const styles: {
+  readonly "active:bg-indigo-600": string;
   readonly "bg-black": string;
   readonly "bg-blue-600": string;
   readonly "bg-indigo-400": string;
   readonly "bg-indigo-500": string;
+  readonly "bg-indigo-600": string;
   readonly "bg-slate-600": string;
   readonly "blinkAnim": string;
   readonly "border": string;
