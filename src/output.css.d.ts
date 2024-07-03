@@ -10,6 +10,9 @@ declare const styles: {
   readonly "container": string;
   readonly "content": string;
   readonly "flex": string;
+  readonly "font-bold": string;
+  readonly "font-medium": string;
+  readonly "font-semibold": string;
   readonly "grid": string;
   readonly "hover:bg-indigo-400": string;
   readonly "missing": string;
