@@ -242,7 +242,7 @@ function Plugin() {
           alignItems: "center",
         }}
       >
-        <h2 className="font-bold text-sm">Some text</h2>
+        <h2 className="font-medium text-sm">Some text</h2>
         <div
           style={{ display: "flex", alignItems: "center", gap: "4px" }}
         ></div>
