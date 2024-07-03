@@ -17,6 +17,7 @@ declare const styles: {
   readonly "flex": string;
   readonly "focus:border-2": string;
   readonly "focus:outline-2": string;
+  readonly "focus:outline-4": string;
   readonly "font-bold": string;
   readonly "font-medium": string;
   readonly "font-semibold": string;
@@ -25,6 +26,7 @@ declare const styles: {
   readonly "missing": string;
   readonly "outline": string;
   readonly "outline-2": string;
+  readonly "outline-4": string;
   readonly "outline-black": string;
   readonly "outline-blue-200": string;
   readonly "p-2": string;

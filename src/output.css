@@ -725,6 +725,10 @@ video {
   outline-width: 2px;
 }
 
+.outline-4 {
+  outline-width: 4px;
+}
+
 .outline-black {
   outline-color: #000;
 }
@@ -852,6 +856,10 @@ video {
 
 .focus\:outline-2:focus {
   outline-width: 2px;
+}
+
+.focus\:outline-4:focus {
+  outline-width: 4px;
 }
 
 .active\:bg-indigo-600:active {
