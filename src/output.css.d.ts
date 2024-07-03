@@ -29,6 +29,7 @@ declare const styles: {
   readonly "success-icon": string;
   readonly "success-text": string;
   readonly "text-3xl": string;
+  readonly "text-base": string;
   readonly "text-lg": string;
   readonly "text-white": string;
   readonly "text-xl": string;
