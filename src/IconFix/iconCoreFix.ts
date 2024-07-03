@@ -4,7 +4,7 @@ import {
   FLATTENING_ERROR_COLOR,
   SETTING_CONSTRAINTS_ERROR_COLOR,
   OUTLINE_ERROR_COLOR,
-} from "../content/constants";
+} from "../gridBuilding/constants";
 
 type BuildingErrorType =
   | "outlineError"

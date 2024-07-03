@@ -2,19 +2,39 @@ import { attachLabelToIcon } from "./attachLabelToIcon";
 import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
 import { computeMaximumBounds } from "@create-figma-plugin/utilities";
+import { splitArray } from "./splitArray";
 
-function buildIconColumn(
-  rows: number,
-  iconDist: number,
-  rowDist: number,
-  columnDist: number,
-  hexColor: string,
-  opacity: string,
-  iconSize: string,
-  addMetaData: boolean,
-  scaleIconContent: boolean
-) {
+interface IconColumnOptions {
+  rows: number;
+  iconDist: number;
+  rowDist: number;
+  columnDist: number;
+  hexColor: string;
+  opacity: string;
+  iconSize: string;
+  addMetaData: boolean;
+  scaleIconContent: boolean;
+}
+
+function buildIconColumn(options: IconColumnOptions): void {
+  const {
+    rows,
+    iconDist,
+    rowDist,
+    columnDist,
+    hexColor,
+    opacity,
+    iconSize,
+    addMetaData,
+    scaleIconContent,
+  } = options;
+
   const selection = figma.currentPage.selection;
+  if (selection.length === 0) {
+    figma.notify("Please select at least one element");
+    return;
+  }
+
   let currentFrame: FrameNode | null = null;
 
   const opacityValue = cleanOpacityValue(opacity);
@@ -143,39 +163,54 @@ function buildIconColumn(
   label.remove();
 }
 
+type ColorType = "fill" | "stroke";
+
 function applyVectorColor(
   vector: VectorNode,
-  type: "fill" | "stroke",
+  type: ColorType,
   hexColorValue: string
-) {
-  const property = type === "fill" ? "fills" : "strokes";
+): void {
+  const property: PaintProperty = type === "fill" ? "fills" : "strokes";
 
-  removeBoundVariables(vector, property);
+  try {
+    removeBoundVariables(vector, property);
 
-  const paintsCopy = JSON.parse(JSON.stringify(vector[property]));
-  paintsCopy[0] = figma.variables.setBoundVariableForPaint(
-    paintsCopy[0],
-    "color",
-    null
-  );
-  vector[property] = paintsCopy;
+    const paints = vector[property] as Paint[];
+    if (paints.length === 0) {
+      console.warn(`No ${property} found on vector ${vector.name}`);
+      return;
+    }
 
-  const updatedPaint = figma.util.solidPaint(
-    `#${hexColorValue}`,
-    //@ts-ignore
-    vector[property][0]
-  );
-  vector[property] = [updatedPaint];
+    const paintCopy = JSON.parse(JSON.stringify(paints[0])) as SolidPaint;
+    figma.variables.setBoundVariableForPaint(paintCopy, "color", null);
+
+    const updatedPaint = figma.util.solidPaint(`#${hexColorValue}`, paintCopy);
+    vector[property] = [updatedPaint];
+  } catch (error) {
+    console.error(
+      `Failed to apply ${type} color to vector ${vector.name}:`,
+      error
+    );
+  }
 }
 
-function removeBoundVariables(node: VectorNode, property: "fills" | "strokes") {
-  //@ts-ignore
-  if (node[property].length > 0) {
-    figma.variables.setBoundVariableForPaint(
-      //@ts-ignore
-      node[property][0],
-      "color",
-      null
+type PaintProperty = "fills" | "strokes";
+
+function removeBoundVariables(node: VectorNode, property: PaintProperty): void {
+  const paints = node[property] as SolidPaint[];
+
+  if (paints.length === 0) {
+    console.warn(`No ${property} found on node ${node.name}`);
+    return;
+  }
+
+  const firstPaint = paints[0];
+  try {
+    figma.variables.setBoundVariableForPaint(firstPaint, "color", null);
+  } catch (error) {
+    console.error(
+      `Failed to remove bound variable from ${property} of node ${node.name}:`,
+      error
     );
   }
 }
@@ -204,12 +239,3 @@ function createColumn() {
 }
 
 export default buildIconColumn;
-
-function splitArray(array: any | any[], chunkSize: number) {
-  const resArray = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    const chunk = array.slice(i, i + chunkSize);
-    resArray.push(chunk);
-  }
-  return resArray;
-}

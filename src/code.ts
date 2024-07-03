@@ -1,5 +1,5 @@
 import { emit, on, showUI } from "@create-figma-plugin/utilities";
-import buildIconColumn from "./content/buildIconGrid";
+import buildIconColumn from "./gridBuilding/buildIconGrid";
 
 const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
