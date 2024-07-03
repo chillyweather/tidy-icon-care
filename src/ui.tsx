@@ -22,7 +22,7 @@ import {
   scaleIconContentAtom,
 } from "./atoms";
 
-import "!../styles.css";
+import "!./output.css";
 
 function Plugin() {
   const [rows, setRows] = useState<string>("");
@@ -213,7 +213,7 @@ function Plugin() {
         </div>
         <VerticalSpace space="extraLarge" />
         <button
-        className={"primary"}
+        className={"bg-slate-600"}
           onClick={() => handleClick()}
         >
           Build Icon Grid
