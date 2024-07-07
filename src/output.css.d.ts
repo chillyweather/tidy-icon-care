@@ -15,6 +15,7 @@ declare const styles: {
   readonly "container": string;
   readonly "content": string;
   readonly "flex": string;
+  readonly "flex-col": string;
   readonly "focus:border-2": string;
   readonly "focus:outline-2": string;
   readonly "focus:outline-4": string;

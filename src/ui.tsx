@@ -129,7 +129,7 @@ function Plugin() {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className={"flex flex-col"}>
         <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric
