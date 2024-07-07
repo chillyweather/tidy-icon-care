@@ -128,20 +128,6 @@ function Plugin() {
       justifyContent: "space-between",
     };
 
-    const metadataCheckBoxRowStyle = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      gap: "50px",
-    };
-
-    const scaleCheckBoxRowStyle = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      gap: "28px",
-    };
-
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={rowStyle}>
