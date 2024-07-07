@@ -13,6 +13,7 @@ import { useAtom } from "jotai";
 import ColorPickerElement from "./IconFix/ColorPicker";
 import SizeDropdown from "./IconFix/Dropdown";
 import CheckBoxElement from "./IconFix/CheckBox";
+import NumInput from "./IconFix/NumInput";
 
 import {
   hexColorAtom,
@@ -130,6 +131,7 @@ function Plugin() {
 
     return (
       <div className={"flex flex-col"}>
+        <NumInput label="Rows"></NumInput>
         <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric
