@@ -131,7 +131,18 @@ function Plugin() {
 
     return (
       <div className={"flex flex-col"}>
-        <NumInput label="Rows" icon="row"></NumInput>
+
+        <div className="flex flex-col gap-6">
+          <div className={"flex gap-2"}>
+            <NumInput label="No. of rows" icon="row"></NumInput>
+            <NumInput label="Label spacing" icon="spacing"></NumInput>
+          </div>
+          <div className={"flex gap-2"}>
+            <NumInput label="Rows gutter" icon="row-gutter"></NumInput>
+            <NumInput label="Columns gutter" icon="col-gutter"></NumInput>
+          </div>
+        </div>
+
         <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric

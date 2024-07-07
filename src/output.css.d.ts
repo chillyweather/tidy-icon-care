@@ -28,7 +28,9 @@ declare const styles: {
   readonly "font-medium": string;
   readonly "font-semibold": string;
   readonly "gap-2": string;
+  readonly "gap-4": string;
   readonly "gap-6": string;
+  readonly "gap-8": string;
   readonly "grid": string;
   readonly "h-full": string;
   readonly "hover:bg-indigo-400": string;
