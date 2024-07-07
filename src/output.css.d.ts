@@ -9,6 +9,7 @@ declare const styles: {
   readonly "blinkAnim": string;
   readonly "border": string;
   readonly "border-2": string;
+  readonly "border-slate-100": string;
   readonly "border-solid": string;
   readonly "border-stone-500": string;
   readonly "button": string;
@@ -30,6 +31,7 @@ declare const styles: {
   readonly "outline-4": string;
   readonly "outline-black": string;
   readonly "outline-blue-200": string;
+  readonly "p-1": string;
   readonly "p-2": string;
   readonly "p-3": string;
   readonly "p-4": string;
@@ -39,6 +41,8 @@ declare const styles: {
   readonly "resize": string;
   readonly "rounded": string;
   readonly "rounded-lg": string;
+  readonly "rounded-md": string;
+  readonly "rounded-sm": string;
   readonly "splash-content": string;
   readonly "success": string;
   readonly "success-group": string;
@@ -52,6 +56,7 @@ declare const styles: {
   readonly "text-white": string;
   readonly "text-xl": string;
   readonly "visible": string;
+  readonly "w-full": string;
 };
 export = styles;
 
