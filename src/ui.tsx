@@ -133,17 +133,17 @@ function Plugin() {
       <div className={"flex flex-col"}>
 
         <div className="flex flex-col gap-6">
-          <div className={"flex gap-2"}>
+          <div className={"flex gap-3"}>
             <NumInput label="No. of rows" icon="row"></NumInput>
             <NumInput label="Label spacing" icon="spacing"></NumInput>
           </div>
-          <div className={"flex gap-2"}>
+          <div className={"flex gap-3"}>
             <NumInput label="Rows gutter" icon="row-gutter"></NumInput>
             <NumInput label="Columns gutter" icon="col-gutter"></NumInput>
           </div>
         </div>
 
-        <div style={rowStyle}>
+        {/* <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric
             revertOnEscapeKeyDown
@@ -189,7 +189,7 @@ function Plugin() {
             variant="border"
             style={{ width: "144px" }}
           />
-        </div>
+        </div> */}
         <VerticalSpace space="extraLarge" />
         <div style={rowStyle}>
           <Text>Icon color</Text>
@@ -228,17 +228,9 @@ function Plugin() {
   return (
     <Container space="medium">
       <VerticalSpace space="extraLarge" />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <div className={"flex flex-col gap-2"}>
         <h2 className="font-medium text-sm text-slate-700">Some text</h2>
-        <div
-          style={{ display: "flex", alignItems: "center", gap: "4px" }}
-        ></div>
+        <p className={"text-zinc-500"}>Change how Untitled UI looks and feel in Canvas and browser</p>
       </div>
       <VerticalSpace space="extraLarge" />
 

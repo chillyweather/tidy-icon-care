@@ -28,6 +28,7 @@ declare const styles: {
   readonly "font-medium": string;
   readonly "font-semibold": string;
   readonly "gap-2": string;
+  readonly "gap-3": string;
   readonly "gap-4": string;
   readonly "gap-6": string;
   readonly "gap-8": string;
@@ -42,6 +43,7 @@ declare const styles: {
   readonly "outline-blue-200": string;
   readonly "p-0": string;
   readonly "p-1": string;
+  readonly "p-1.5": string;
   readonly "p-2": string;
   readonly "p-3": string;
   readonly "p-4": string;
@@ -66,10 +68,14 @@ declare const styles: {
   readonly "text-3xl": string;
   readonly "text-base": string;
   readonly "text-lg": string;
+  readonly "text-slate-400": string;
+  readonly "text-slate-500": string;
   readonly "text-slate-700": string;
   readonly "text-sm": string;
   readonly "text-white": string;
   readonly "text-xl": string;
+  readonly "text-zinc-400": string;
+  readonly "text-zinc-500": string;
   readonly "visible": string;
   readonly "w-1": string;
   readonly "w-4": string;
