@@ -203,13 +203,11 @@ function Plugin() {
         </div>
         <VerticalSpace space="medium" />
         <div style={scaleCheckBoxRowStyle}>
-          <Text>Scale icon content</Text>
-          <CheckBoxElement label="" type="scale" />
+          <CheckBoxElement label="Scale icon content" type="scale" />
         </div>
         <VerticalSpace space="medium" />
         <div style={metadataCheckBoxRowStyle}>
-          <Text>Add metadata</Text>
-          <CheckBoxElement label="" type="metadata" />
+          <CheckBoxElement label="Add metadata" type="metadata" />
         </div>
         <VerticalSpace space="extraLarge" />
         <button
