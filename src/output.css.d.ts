@@ -23,6 +23,8 @@ declare const styles: {
   readonly "font-bold": string;
   readonly "font-medium": string;
   readonly "font-semibold": string;
+  readonly "gap-2": string;
+  readonly "gap-6": string;
   readonly "grid": string;
   readonly "hover:bg-indigo-400": string;
   readonly "missing": string;

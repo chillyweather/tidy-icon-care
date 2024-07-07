@@ -612,6 +612,14 @@ video {
   flex-direction: column;
 }
 
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
