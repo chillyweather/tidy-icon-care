@@ -202,16 +202,12 @@ function Plugin() {
           <SizeDropdown />
         </div>
         <VerticalSpace space="medium" />
-        <div style={scaleCheckBoxRowStyle}>
-          <CheckBoxElement label="Scale icon content" type="scale" />
-        </div>
+        <CheckBoxElement label="Scale icon content" type="scale" />
         <VerticalSpace space="medium" />
-        <div style={metadataCheckBoxRowStyle}>
-          <CheckBoxElement label="Add metadata" type="metadata" />
-        </div>
+        <CheckBoxElement label="Add metadata" type="metadata" />
         <VerticalSpace space="extraLarge" />
         <button
-        className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus:outline-4"}
+          className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus:outline-4"}
           onClick={() => handleClick()}
         >
           Build icon grid
