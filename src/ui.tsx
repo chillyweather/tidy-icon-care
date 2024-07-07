@@ -131,7 +131,7 @@ function Plugin() {
 
     return (
       <div className={"flex flex-col"}>
-        <NumInput label="Rows"></NumInput>
+        <NumInput label="Rows" icon="row"></NumInput>
         <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric
