@@ -41,6 +41,8 @@ declare const styles: {
   readonly "grid": string;
   readonly "h-full": string;
   readonly "hover:bg-indigo-400": string;
+  readonly "items-center": string;
+  readonly "justify-center": string;
   readonly "missing": string;
   readonly "outline": string;
   readonly "outline-2": string;
