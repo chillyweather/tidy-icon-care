@@ -198,7 +198,6 @@ function Plugin() {
           <Text>Icon color</Text>
           <ColorPickerElement />
         </div>
-        <VerticalSpace space="small" />
         <div style={rowStyle}>
           <Text>Icon size</Text>
           <SizeDropdown />
@@ -230,16 +229,13 @@ function Plugin() {
 
   return (
     <Container space="medium">
-      <VerticalSpace space="extraLarge" />
       <div className={"flex flex-col gap-2"}>
         <h2 className="font-medium text-sm text-slate-700">Some text</h2>
         <p className={"text-zinc-500"}>We need short description for Tidy icons care</p>
       </div>
-      <VerticalSpace space="extraLarge" />
 
       {LayoutSettings}
 
-      <VerticalSpace space="large" />
     </Container>
   );
 }
