@@ -13,6 +13,7 @@ import { useAtom } from "jotai";
 import ColorPickerElement from "./IconFix/ColorPicker";
 import SizeDropdown from "./IconFix/Dropdown";
 import CheckBoxElement from "./IconFix/CheckBox";
+import NumInput from "./IconFix/NumInput";
 
 import {
   hexColorAtom,
@@ -128,23 +129,24 @@ function Plugin() {
       justifyContent: "space-between",
     };
 
-    const metadataCheckBoxRowStyle = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      gap: "50px",
-    };
-
-    const scaleCheckBoxRowStyle = {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      gap: "28px",
-    };
-
     return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={rowStyle}>
+      <div className={"flex flex-col"}>
+
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-8">Grid</h2>
+        <div className="flex flex-col gap-6">
+          <div className={"flex gap-3"}>
+            <NumInput label="No. of rows" icon="row"></NumInput>
+            <NumInput label="Label spacing" icon="spacing"></NumInput>
+          </div>
+          <div className={"flex gap-3"}>
+            <NumInput label="Rows gutter" icon="row-gutter"></NumInput>
+            <NumInput label="Columns gutter" icon="col-gutter"></NumInput>
+          </div>
+        </div>
+
+        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-4"} />
+
+        {/* <div style={rowStyle}>
           <Text>Rows</Text>
           <TextboxNumeric
             revertOnEscapeKeyDown
@@ -190,30 +192,23 @@ function Plugin() {
             variant="border"
             style={{ width: "144px" }}
           />
-        </div>
-        <VerticalSpace space="extraLarge" />
-        <div style={rowStyle}>
+        </div> */}
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Icon properties</h2>
+        <div style={rowStyle} className={"flex"}>
           <Text>Icon color</Text>
           <ColorPickerElement />
         </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
+        <div style={rowStyle} className={"flex pt-4"}>
           <Text>Icon size</Text>
           <SizeDropdown />
         </div>
-        <VerticalSpace space="medium" />
-        <div style={scaleCheckBoxRowStyle}>
-          <Text>Scale icon content</Text>
-          <CheckBoxElement label="" type="scale" />
-        </div>
-        <VerticalSpace space="medium" />
-        <div style={metadataCheckBoxRowStyle}>
-          <Text>Add metadata</Text>
-          <CheckBoxElement label="" type="metadata" />
-        </div>
-        <VerticalSpace space="extraLarge" />
+        
+        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-4"} />
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Content</h2>
+        <CheckBoxElement label="Scale icon content" type="scale" />
+        <CheckBoxElement label="Add metadata" type="metadata" />
         <button
-        className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus:outline-4"}
+          className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-4 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"}
           onClick={() => handleClick()}
         >
           Build icon grid
@@ -234,24 +229,13 @@ function Plugin() {
 
   return (
     <Container space="medium">
-      <VerticalSpace space="extraLarge" />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h2 className="font-medium text-sm text-slate-700">Some text</h2>
-        <div
-          style={{ display: "flex", alignItems: "center", gap: "4px" }}
-        ></div>
+      <div className={"flex flex-col gap-2"}>
+        <h2 className="font-medium text-sm text-slate-700 pt-8">Some text</h2>
+        <p className={"text-zinc-500"}>We need short description for Tidy icons care</p>
       </div>
-      <VerticalSpace space="extraLarge" />
 
       {LayoutSettings}
 
-      <VerticalSpace space="large" />
     </Container>
   );
 }
