@@ -15,8 +15,8 @@ export default function ({ label, type }: { label: string; type: string }) {
   }
   return (
     <div className={"flex gap-2 items-center"}>
-      <input type={"checkbox"} onChange={handleChange} checked={value} id={label} />
-      <label for={label}>{label}</label>
+      <input type={"checkbox"} onChange={handleChange} checked={value} id={type} />
+      <label for={type}>{label}</label>
     </div>
   );
 }
