@@ -48,6 +48,8 @@ declare const styles: {
   readonly "hover:bg-indigo-400": string;
   readonly "items-center": string;
   readonly "justify-center": string;
+  readonly "mb-3": string;
+  readonly "mb-4": string;
   readonly "missing": string;
   readonly "outline": string;
   readonly "outline-2": string;
@@ -68,7 +70,10 @@ declare const styles: {
   readonly "pr-6": string;
   readonly "pr-8": string;
   readonly "primary": string;
+  readonly "pt-3": string;
   readonly "pt-4": string;
+  readonly "py-2": string;
+  readonly "py-4": string;
   readonly "radio-buttons": string;
   readonly "relative": string;
   readonly "resize": string;

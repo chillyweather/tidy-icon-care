@@ -193,7 +193,7 @@ function Plugin() {
             style={{ width: "144px" }}
           />
         </div> */}
-        <VerticalSpace space="extraLarge" />
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Icon properties</h2>
         <div style={rowStyle}>
           <Text>Icon color</Text>
           <ColorPickerElement />
@@ -203,11 +203,11 @@ function Plugin() {
           <Text>Icon size</Text>
           <SizeDropdown />
         </div>
-        <VerticalSpace space="medium" />
+        
+        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-3 mb-4"} />
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Content</h2>
         <CheckBoxElement label="Scale icon content" type="scale" />
-        <VerticalSpace space="medium" />
         <CheckBoxElement label="Add metadata" type="metadata" />
-        <VerticalSpace space="extraLarge" />
         <button
           className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"}
           onClick={() => handleClick()}
