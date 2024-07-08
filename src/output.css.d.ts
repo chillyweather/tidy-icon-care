@@ -52,6 +52,8 @@ declare const styles: {
   readonly "mb-3": string;
   readonly "mb-4": string;
   readonly "missing": string;
+  readonly "mt-4": string;
+  readonly "mt-8": string;
   readonly "outline": string;
   readonly "outline-2": string;
   readonly "outline-4": string;

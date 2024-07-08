@@ -208,7 +208,7 @@ function Plugin() {
         <CheckBoxElement label="Scale icon content" type="scale" />
         <CheckBoxElement label="Add metadata" type="metadata" />
         <button
-          className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"}
+          className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-4 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"}
           onClick={() => handleClick()}
         >
           Build icon grid
