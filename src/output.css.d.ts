@@ -10,6 +10,7 @@ declare const styles: {
   readonly "blinkAnim": string;
   readonly "border": string;
   readonly "border-2": string;
+  readonly "border-blue-400": string;
   readonly "border-r": string;
   readonly "border-r-2": string;
   readonly "border-slate-100": string;
@@ -22,7 +23,11 @@ declare const styles: {
   readonly "flex": string;
   readonly "flex-col": string;
   readonly "focus-visible:outline-4": string;
+  readonly "focus-within:border-2": string;
+  readonly "focus-within:border-blue-400": string;
+  readonly "focus-within:border-indigo-500": string;
   readonly "focus:border-2": string;
+  readonly "focus:border-blue-400": string;
   readonly "focus:outline-2": string;
   readonly "focus:outline-4": string;
   readonly "font-bold": string;
