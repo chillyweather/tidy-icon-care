@@ -21,6 +21,7 @@ declare const styles: {
   readonly "content": string;
   readonly "flex": string;
   readonly "flex-col": string;
+  readonly "focus-visible:outline-4": string;
   readonly "focus:border-2": string;
   readonly "focus:outline-2": string;
   readonly "focus:outline-4": string;

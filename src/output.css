@@ -994,6 +994,10 @@ video {
   outline-width: 4px;
 }
 
+.focus-visible\:outline-4:focus-visible {
+  outline-width: 4px;
+}
+
 .active\:bg-indigo-600:active {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
