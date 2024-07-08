@@ -1,5 +1,4 @@
 import { h, JSX } from "preact";
-import { Checkbox, Text } from "@create-figma-plugin/ui";
 import { Dispatch, StateUpdater } from "preact/hooks";
 import { useAtom } from "jotai";
 import { addMetaDataAtom, scaleIconContentAtom } from "../atoms";
@@ -19,8 +18,5 @@ export default function ({ label, type }: { label: string; type: string }) {
       <input type={"checkbox"} onChange={handleChange} checked={value} id={label} />
       <label for={label}>{label}</label>
     </div>
-    // <Checkbox onChange={handleChange} value={value}>
-    //   <Text>{label}</Text>
-    // </Checkbox>
   );
 }
