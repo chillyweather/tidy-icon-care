@@ -74,6 +74,7 @@ declare const styles: {
   readonly "pt-2": string;
   readonly "pt-3": string;
   readonly "pt-4": string;
+  readonly "pt-8": string;
   readonly "py-2": string;
   readonly "py-4": string;
   readonly "radio-buttons": string;

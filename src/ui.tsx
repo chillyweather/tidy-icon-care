@@ -132,7 +132,7 @@ function Plugin() {
     return (
       <div className={"flex flex-col"}>
 
-        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Grid</h2>
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-8">Grid</h2>
         <div className="flex flex-col gap-6">
           <div className={"flex gap-3"}>
             <NumInput label="No. of rows" icon="row"></NumInput>
@@ -144,7 +144,7 @@ function Plugin() {
           </div>
         </div>
 
-        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-4"} />
+        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-4"} />
 
         {/* <div style={rowStyle}>
           <Text>Rows</Text>
@@ -194,16 +194,16 @@ function Plugin() {
           />
         </div> */}
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Icon properties</h2>
-        <div style={rowStyle}>
+        <div style={rowStyle} className={"flex"}>
           <Text>Icon color</Text>
           <ColorPickerElement />
         </div>
-        <div style={rowStyle}>
+        <div style={rowStyle} className={"flex pt-4"}>
           <Text>Icon size</Text>
           <SizeDropdown />
         </div>
         
-        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-4"} />
+        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-4"} />
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Content</h2>
         <CheckBoxElement label="Scale icon content" type="scale" />
         <CheckBoxElement label="Add metadata" type="metadata" />
@@ -230,7 +230,7 @@ function Plugin() {
   return (
     <Container space="medium">
       <div className={"flex flex-col gap-2"}>
-        <h2 className="font-medium text-sm text-slate-700">Some text</h2>
+        <h2 className="font-medium text-sm text-slate-700 pt-8">Some text</h2>
         <p className={"text-zinc-500"}>We need short description for Tidy icons care</p>
       </div>
 
