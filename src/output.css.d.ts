@@ -55,6 +55,7 @@ declare const styles: {
   readonly "pr-8": string;
   readonly "primary": string;
   readonly "radio-buttons": string;
+  readonly "relative": string;
   readonly "resize": string;
   readonly "rounded": string;
   readonly "rounded-lg": string;
