@@ -1,7 +1,5 @@
 import { h, JSX } from "preact";
 import { useEffect } from "preact/hooks";
-import { useAtom } from "jotai";
-import { iconSizeAtom } from "../atoms";
 import "!./Icons.css";
 
 const NumInput = ({
