@@ -1075,6 +1075,10 @@ video {
   border: none;
 }
 
+._textboxColor_69uub_1 > ._divider_69uub_109{
+  height: 20px;
+}
+
 @keyframes blinkAnim {
   0% {
     opacity: 1;

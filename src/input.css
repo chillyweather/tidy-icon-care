@@ -106,6 +106,9 @@
 ._textboxColor_69uub_1 > *{
   border: none;
 }
+._textboxColor_69uub_1 > ._divider_69uub_109{
+  height: 20px;
+}
 
 @keyframes blinkAnim {
   0% {
