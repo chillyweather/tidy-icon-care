@@ -19,6 +19,7 @@ declare const styles: {
   readonly "border-r-2": string;
   readonly "border-slate-100": string;
   readonly "border-slate-200": string;
+  readonly "border-slate-300": string;
   readonly "border-solid": string;
   readonly "border-stone-500": string;
   readonly "border-t-0": string;
