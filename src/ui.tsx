@@ -224,11 +224,11 @@ function Plugin() {
           Icon properties
         </h2>
         <div style={rowStyle} className={"flex"}>
-          <Text>Color:</Text>
+          <p>Color:</p>
           <ColorPickerElement hexColor="#ffffff" />
         </div>
         <div style={rowStyle} className={"flex pt-4"}>
-          <Text>Icon size:</Text>
+          <p>Icon size:</p>
           <SizeDropdown />
         </div>
 

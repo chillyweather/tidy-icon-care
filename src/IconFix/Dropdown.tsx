@@ -12,13 +12,13 @@ function SizeDropdown({ disabled }: { disabled?: boolean }) {
       value: "16px",
     },
     {
-      value: "20px",
-    },
-    {
       value: "24px",
     },
     {
       value: "32px",
+    },
+    {
+      value: "48px",
     },
   ];
   function handleChange(event: any) {
