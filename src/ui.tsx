@@ -131,20 +131,47 @@ function Plugin() {
 
     return (
       <div className={"flex flex-col"}>
-
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-8">Grid</h2>
         <div className="flex flex-col gap-6">
           <div className={"flex gap-3"}>
-            <NumInput label="No. of rows" icon="row"></NumInput>
-            <NumInput label="Label spacing" icon="spacing"></NumInput>
+            <NumInput
+              label="No. of rows"
+              icon="row"
+              min="1"
+              value={rows}
+              setValue={setRows}
+            ></NumInput>
+            <NumInput
+              label="Label spacing"
+              icon="spacing"
+              min="0"
+              value={iconSpacing}
+              setValue={setIconSpacing}
+            ></NumInput>
           </div>
           <div className={"flex gap-3"}>
-            <NumInput label="Rows gutter" icon="row-gutter"></NumInput>
-            <NumInput label="Columns gutter" icon="col-gutter"></NumInput>
+            <NumInput
+              label="Rows gutter"
+              icon="row-gutter"
+              min="0"
+              value={rowSpacing}
+              setValue={setRowSpacing}
+            ></NumInput>
+            <NumInput
+              label="Columns gutter"
+              icon="col-gutter"
+              min="0"
+              value={columnSpacing}
+              setValue={setColumnSpacing}
+            ></NumInput>
           </div>
         </div>
 
-        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-3"} />
+        <hr
+          className={
+            "border-b border-t-0 border-slate-100 border-solid pt-8 mb-3"
+          }
+        />
 
         {/* <div style={rowStyle}>
           <Text>Rows</Text>
@@ -193,7 +220,9 @@ function Plugin() {
             style={{ width: "144px" }}
           />
         </div> */}
-        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Icon properties</h2>
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
+          Icon properties
+        </h2>
         <div style={rowStyle} className={"flex"}>
           <Text>Color:</Text>
           <ColorPickerElement hexColor="#ffffff" />
@@ -202,13 +231,21 @@ function Plugin() {
           <Text>Icon size:</Text>
           <SizeDropdown />
         </div>
-        
-        <hr className={"border-b border-t-0 border-slate-100 border-solid pt-8 mb-3"} />
-        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Content</h2>
+
+        <hr
+          className={
+            "border-b border-t-0 border-slate-100 border-solid pt-8 mb-3"
+          }
+        />
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
+          Content
+        </h2>
         <CheckBoxElement label="Scale icon content" type="scale" />
         <CheckBoxElement label="Add metadata" type="metadata" />
         <button
-          className={"bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-4 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"}
+          className={
+            "bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-4 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"
+          }
           onClick={() => handleClick()}
         >
           Build icon grid
@@ -231,11 +268,12 @@ function Plugin() {
     <Container space="medium">
       <div className={"flex flex-col gap-2"}>
         <h2 className="font-medium text-sm text-slate-700 pt-8">Some text</h2>
-        <p className={"text-zinc-500"}>We need short description for Tidy icons care</p>
+        <p className={"text-zinc-500"}>
+          We need short description for Tidy icons care
+        </p>
       </div>
 
       {LayoutSettings}
-
     </Container>
   );
 }
