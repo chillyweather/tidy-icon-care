@@ -4,7 +4,6 @@ import buildIconColumn from "./gridBuilding/buildIconGrid";
 const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 };
-
 export default async function () {
   showUI({ height: 652, width: 400 });
   await loadFonts();
