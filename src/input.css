@@ -129,6 +129,11 @@
   @apply rounded scale-90;
 }
 
+._chevronIcon_l9ibg_63{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
 @keyframes blinkAnim {
   0% {
     opacity: 1;

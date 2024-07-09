@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "_chevronIcon_l9ibg_63": string;
   readonly "_color_69uub_13": string;
   readonly "_divider_69uub_109": string;
   readonly "_hexColorInput_69uub_80": string;
