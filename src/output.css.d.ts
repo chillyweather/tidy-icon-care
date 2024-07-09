@@ -1,4 +1,8 @@
 declare const styles: {
+  readonly "_color_69uub_13": string;
+  readonly "_divider_69uub_109": string;
+  readonly "_hexColorInput_69uub_80": string;
+  readonly "_textboxColor_69uub_1": string;
   readonly "active:bg-indigo-600": string;
   readonly "bg-black": string;
   readonly "bg-blue-600": string;
@@ -19,6 +23,7 @@ declare const styles: {
   readonly "border-r-2": string;
   readonly "border-slate-100": string;
   readonly "border-slate-200": string;
+  readonly "border-slate-300": string;
   readonly "border-solid": string;
   readonly "border-stone-500": string;
   readonly "border-t-0": string;
