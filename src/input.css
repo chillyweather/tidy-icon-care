@@ -100,6 +100,13 @@
   opacity: 0.8;
 }
 
+._textboxColor_69uub_1{
+  @apply border-slate-200 border border-solid rounded focus-within:border-indigo-500;
+}
+._textboxColor_69uub_1 > *{
+  border: none;
+}
+
 @keyframes blinkAnim {
   0% {
     opacity: 1;

@@ -7,7 +7,7 @@ import { memo } from "preact/compat";
 
 const MemoizedTextboxColor = memo(TextboxColor);
 
-const ColorPickerElement = () => {
+const ColorPickerElement = (props: any) => {
   const [hexColor, setHexColor] = useAtom(hexColorAtom);
   const [opacity, setOpacity] = useAtom(opacityAtom);
   function handleHexColorInput(event: JSX.TargetedEvent<HTMLInputElement>) {

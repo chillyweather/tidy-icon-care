@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "_textboxColor_69uub_1": string;
   readonly "blinkAnim": string;
   readonly "button": string;
   readonly "container": string;

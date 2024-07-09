@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "_textboxColor_69uub_1": string;
   readonly "active:bg-indigo-600": string;
   readonly "bg-black": string;
   readonly "bg-blue-600": string;
