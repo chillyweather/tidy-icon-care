@@ -632,16 +632,12 @@ video {
   width: 0.25rem;
 }
 
-.w-4 {
-  width: 1rem;
-}
-
-.w-full {
-  width: 100%;
-}
-
 .w-28 {
   width: 7rem;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .w-40 {
@@ -652,12 +648,16 @@ video {
   width: 15rem;
 }
 
-.min-w-60 {
-  min-width: 15rem;
+.w-full {
+  width: 100%;
 }
 
 .min-w-40 {
   min-width: 10rem;
+}
+
+.min-w-60 {
+  min-width: 15rem;
 }
 
 .resize {
@@ -1080,6 +1080,7 @@ video {
 
 ._textboxColor_69uub_1,
 ._dropdown_l9ibg_1 {
+  height: 34.5px;
   border-radius: 0.25rem;
   border-width: 1px;
   border-style: solid;

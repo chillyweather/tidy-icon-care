@@ -102,6 +102,7 @@
 
 ._textboxColor_69uub_1,
 ._dropdown_l9ibg_1 {
+  height: 34.5px;
   @apply border-slate-200 border border-solid rounded focus-within:border-indigo-500;
 }
 
