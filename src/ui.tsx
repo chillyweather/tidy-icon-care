@@ -94,8 +94,8 @@ function Plugin() {
         setIconSpacing(data.iconSpacing || 10);
         setRowSpacing(data.rowSpacing || 16);
         setColumnSpacing(data.columnSpacing || 36);
-        setHexColor(data.hexColor || "#0D0C0C");
-        setOpacity(data.opacity || "100");
+        setHexColor(data.hexColor || "0D0C0C");
+        setOpacity(data.opacity || "100%");
         setIconSize(data.iconSize || "24px");
         setAddMetaData(data.addMetaData || false);
         setScaleIconContent(data.scaleIconContent || false);
