@@ -58,6 +58,8 @@ declare const styles: {
   readonly "mb-2": string;
   readonly "mb-3": string;
   readonly "mb-4": string;
+  readonly "min-w-40": string;
+  readonly "min-w-60": string;
   readonly "missing": string;
   readonly "mt-4": string;
   readonly "mt-8": string;
@@ -111,7 +113,10 @@ declare const styles: {
   readonly "text-zinc-500": string;
   readonly "visible": string;
   readonly "w-1": string;
+  readonly "w-28": string;
   readonly "w-4": string;
+  readonly "w-40": string;
+  readonly "w-60": string;
   readonly "w-full": string;
 };
 export = styles;
