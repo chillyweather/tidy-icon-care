@@ -4,6 +4,7 @@ declare const styles: {
   readonly "input": string;
   readonly "row": string;
   readonly "row-gutter": string;
+  readonly "ruler": string;
   readonly "spacing": string;
 };
 export = styles;
