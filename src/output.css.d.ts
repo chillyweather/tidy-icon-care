@@ -26,6 +26,11 @@ declare const styles: {
   readonly "border-slate-100": string;
   readonly "border-slate-200": string;
   readonly "border-slate-300": string;
+  readonly "border-slate-400": string;
+  readonly "border-slate-500": string;
+  readonly "border-slate-600": string;
+  readonly "border-slate-700": string;
+  readonly "border-slate-800": string;
   readonly "border-solid": string;
   readonly "border-stone-500": string;
   readonly "border-t-0": string;
@@ -53,6 +58,11 @@ declare const styles: {
   readonly "grid": string;
   readonly "h-full": string;
   readonly "hover:bg-indigo-400": string;
+  readonly "hover:border-slate-400": string;
+  readonly "hover:border-slate-500": string;
+  readonly "hover:border-slate-600": string;
+  readonly "hover:border-slate-700": string;
+  readonly "hover:border-slate-800": string;
   readonly "items-center": string;
   readonly "justify-center": string;
   readonly "mb-0": string;
