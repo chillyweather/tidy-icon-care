@@ -75,7 +75,10 @@ declare const styles: {
   readonly "p-3": string;
   readonly "p-4": string;
   readonly "p-8": string;
+  readonly "pb-1": string;
+  readonly "pb-2": string;
   readonly "pb-4": string;
+  readonly "pb-5": string;
   readonly "pr-2": string;
   readonly "pr-4": string;
   readonly "pr-5": string;
