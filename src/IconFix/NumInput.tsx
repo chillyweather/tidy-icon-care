@@ -26,24 +26,26 @@ const NumInput = ({
   }
 
   return (
-    <div
-      className={
-        "input relative flex border-slate-200 border border-solid rounded p-2 gap-2 w-full focus-within:border-indigo-500"
-      }
-    >
+    <div>
       <div
         className={
-          "icon p-0 pr-6 border-r border-solid border-slate-300 h-full " + icon
+          "input relative flex border-slate-200 border border-solid rounded p-2 gap-2 w-full focus-within:border-indigo-500"
         }
-      ></div>
-      <input
-        type={"number"}
-        value={value}
-        placeholder={label}
-        className={"w-full"}
-        min={parseInt(min)}
-        onChange={handleValueChange}
-      />
+      >
+        <div
+          className={
+            "icon p-0 pr-6 border-r border-solid border-slate-300 " + icon
+          }
+        ></div>
+        <input
+          type={"number"}
+          value={value}
+          placeholder={label}
+          className={"w-full"}
+          min={parseInt(min)}
+          onChange={handleValueChange}
+        />
+      </div>
     </div>
   );
 };
