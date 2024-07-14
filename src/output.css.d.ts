@@ -79,6 +79,8 @@ declare const styles: {
   readonly "min-w-40": string;
   readonly "min-w-60": string;
   readonly "missing": string;
+  readonly "mt-10": string;
+  readonly "mt-12": string;
   readonly "mt-4": string;
   readonly "mt-8": string;
   readonly "outline": string;
@@ -106,6 +108,7 @@ declare const styles: {
   readonly "pt-2": string;
   readonly "pt-3": string;
   readonly "pt-4": string;
+  readonly "pt-5": string;
   readonly "pt-8": string;
   readonly "py-2": string;
   readonly "py-4": string;

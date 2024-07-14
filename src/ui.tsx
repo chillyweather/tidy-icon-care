@@ -244,7 +244,7 @@ function Plugin() {
         <CheckBoxElement label="Add metadata" type="metadata" />
         <button
           className={
-            "bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-8 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"
+            "bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-10 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"
           }
           onClick={() => handleClick()}
         >
@@ -267,7 +267,7 @@ function Plugin() {
   return (
     <Container space="medium">
       <div className={"flex flex-col gap-2"}>
-        <h2 className="font-medium text-sm text-slate-700 pt-8">Some text</h2>
+        <h2 className="font-medium text-sm text-slate-700 pt-5">Some text</h2>
         <p className={"text-zinc-500"}>
           We need short description for Tidy icons care
         </p>
