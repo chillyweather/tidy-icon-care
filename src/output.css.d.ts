@@ -55,6 +55,8 @@ declare const styles: {
   readonly "hover:bg-indigo-400": string;
   readonly "items-center": string;
   readonly "justify-center": string;
+  readonly "mb-0": string;
+  readonly "mb-1": string;
   readonly "mb-2": string;
   readonly "mb-3": string;
   readonly "mb-4": string;
