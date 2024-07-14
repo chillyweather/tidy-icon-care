@@ -103,7 +103,12 @@
 ._textboxColor_69uub_1,
 ._dropdown_l9ibg_1 {
   height: 34.5px;
-  @apply border-slate-200 border border-solid rounded focus-within:border-indigo-500;
+  @apply border-slate-200 border border-solid rounded hover:border-slate-500;
+}
+
+._textboxColor_69uub_1:focus-within,
+._dropdown_l9ibg_1:focus-within {
+  border-color: rgb(99 102 241 / var(--tw-border-opacity)) !important;
 }
 
 ._textboxColor_69uub_1>*,
