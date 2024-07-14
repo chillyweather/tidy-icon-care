@@ -166,7 +166,7 @@
 }
 
 input[type=checkbox]:focus-visible::before {
-  box-shadow: 0 0 0 2px #C2DAFE;
+  box-shadow: 0 0 0 2px #bfdbfe;
 }
 
 @keyframes blinkAnim {
