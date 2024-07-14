@@ -27,6 +27,7 @@ const NumInput = ({
 
   return (
     <div>
+      <div className={"text-slate-600"}>{label}</div>
       <div
         className={
           "input relative flex border-slate-200 border border-solid rounded p-2 gap-2 w-full focus-within:border-indigo-500"
