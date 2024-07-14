@@ -21,6 +21,7 @@ declare const styles: {
   readonly "border-blue-400": string;
   readonly "border-gray-100": string;
   readonly "border-gray-200": string;
+  readonly "border-indigo-500": string;
   readonly "border-r": string;
   readonly "border-r-2": string;
   readonly "border-slate-100": string;
@@ -40,11 +41,13 @@ declare const styles: {
   readonly "flex": string;
   readonly "flex-col": string;
   readonly "focus-visible:outline-4": string;
+  readonly "focus-within:!border-indigo-500": string;
   readonly "focus-within:border-2": string;
   readonly "focus-within:border-blue-400": string;
   readonly "focus-within:border-indigo-500": string;
   readonly "focus:border-2": string;
   readonly "focus:border-blue-400": string;
+  readonly "focus:border-indigo-500": string;
   readonly "focus:outline-2": string;
   readonly "focus:outline-4": string;
   readonly "font-bold": string;
@@ -56,6 +59,8 @@ declare const styles: {
   readonly "gap-6": string;
   readonly "gap-8": string;
   readonly "grid": string;
+  readonly "group": string;
+  readonly "group-focus:border-indigo-500": string;
   readonly "h-full": string;
   readonly "hover:bg-indigo-400": string;
   readonly "hover:border-slate-400": string;
@@ -63,6 +68,7 @@ declare const styles: {
   readonly "hover:border-slate-600": string;
   readonly "hover:border-slate-700": string;
   readonly "hover:border-slate-800": string;
+  readonly "hover:outline-black": string;
   readonly "items-center": string;
   readonly "justify-center": string;
   readonly "mb-0": string;
