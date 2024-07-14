@@ -132,7 +132,7 @@ function Plugin() {
     return (
       <div className={"flex flex-col"}>
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-8">Grid</h2>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           <div className={"flex gap-3"}>
             <NumInput
               label="No. of rows"
