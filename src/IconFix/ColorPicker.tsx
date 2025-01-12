@@ -7,7 +7,7 @@ import { memo } from "preact/compat";
 
 const MemoizedTextboxColor = memo(TextboxColor);
 
-const ColorPickerElement = (props: any) => {
+const ColorPickerElement = ({ isDisabled }: { isDisabled: boolean }) => {
   const [hexColor, setHexColor] = useAtom(hexColorAtom);
   const [opacity, setOpacity] = useAtom(opacityAtom);
   function handleHexColorInput(event: JSX.TargetedEvent<HTMLInputElement>) {
@@ -25,6 +25,7 @@ const ColorPickerElement = (props: any) => {
       onOpacityInput={handleOpacityInput}
       opacity={opacity}
       variant="border"
+      disabled={isDisabled}
     />
   );
 };

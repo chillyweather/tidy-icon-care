@@ -38,6 +38,7 @@ declare const styles: {
   readonly "button": string;
   readonly "container": string;
   readonly "content": string;
+  readonly "filter": string;
   readonly "flex": string;
   readonly "flex-col": string;
   readonly "focus-visible:outline-4": string;

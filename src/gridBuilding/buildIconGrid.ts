@@ -3,6 +3,7 @@ import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
 import { computeMaximumBounds } from "@create-figma-plugin/utilities";
 import { getSelectionGroupCoordinates } from "./getSelectionGroupCoordinates";
+import { checkColorsInIcon } from "./checkColors";
 
 function buildIconColumn(
   rows: number,
@@ -13,7 +14,8 @@ function buildIconColumn(
   opacity: string,
   iconSize: string,
   addMetaData: boolean,
-  scaleIconContent: boolean
+  scaleIconContent: boolean,
+  preserveColors: boolean
 ) {
   const selectedElements = figma.currentPage.selection;
   if (!selectedElements?.length) return;
@@ -75,6 +77,8 @@ function buildIconColumn(
   }
 
   selectedElements.forEach((icon: any) => {
+    const iconColors = checkColorsInIcon(icon);
+    console.log("iconColors", iconColors);
     let workingNode = icon;
 
     if (icon.type === "INSTANCE") {
@@ -86,7 +90,8 @@ function buildIconColumn(
     const fixedNode = iconCoreFix(
       workingNode,
       +iconSizeValue,
-      scaleIconContent
+      scaleIconContent,
+      preserveColors
     );
 
     if (addMetaData) {

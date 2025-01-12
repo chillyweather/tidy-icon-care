@@ -21,6 +21,7 @@ import {
   iconSizeAtom,
   addMetaDataAtom,
   scaleIconContentAtom,
+  preserveColorsAtom,
 } from "./atoms";
 
 import "!./output.css";
@@ -35,6 +36,7 @@ function Plugin() {
   const [iconSize, setIconSize] = useAtom(iconSizeAtom);
   const [addMetaData, setAddMetaData] = useAtom(addMetaDataAtom);
   const [scaleIconContent, setScaleIconContent] = useAtom(scaleIconContentAtom);
+  const [preserveColors, setPreserveColors] = useAtom(preserveColorsAtom);
 
   const handleRowInput = useCallback((e: any) => {
     setRows(e.target.value);
@@ -63,6 +65,7 @@ function Plugin() {
       iconSize: iconSize,
       addMetaData: addMetaData,
       scaleIconContent: scaleIconContent,
+      preserveColors: preserveColors,
     };
     emit("SEND", data);
   }, [
@@ -75,6 +78,7 @@ function Plugin() {
     iconSize,
     addMetaData,
     scaleIconContent,
+    preserveColors,
   ]);
 
   const handleSavedData = useCallback(
@@ -88,6 +92,7 @@ function Plugin() {
       iconSize: string;
       addMetaData: boolean;
       scaleIconContent: boolean;
+      preserveColors: boolean;
     }) => {
       if (data) {
         setRows(data.rows || 10);
@@ -99,6 +104,7 @@ function Plugin() {
         setIconSize(data.iconSize || "24px");
         setAddMetaData(data.addMetaData || false);
         setScaleIconContent(data.scaleIconContent || false);
+        setPreserveColors(data.preserveColors || false);
       }
     },
     []
@@ -173,59 +179,14 @@ function Plugin() {
           }
         />
 
-        {/* <div style={rowStyle}>
-          <Text>Rows</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleRowInput}
-            value={rows}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Icon spacing ↔️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleIconInput}
-            value={iconSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Row spacing ↕️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleRowsInput}
-            value={rowSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Column spacing ↔️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleColumnInput}
-            value={columnSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div> */}
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
           Icon properties
         </h2>
+        <CheckBoxElement label="Preserve original colors" type="preserve" />
+        <VerticalSpace space="extraSmall" />
         <div style={rowStyle} className={"flex w-60"}>
           <p>Color:</p>
-          <ColorPickerElement hexColor="#ffffff" />
+          <ColorPickerElement isDisabled={preserveColors} />
         </div>
         <div style={rowStyle} className={"flex pt-4 w-60"}>
           <p>Icon size:</p>
