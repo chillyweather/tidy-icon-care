@@ -23,6 +23,7 @@ import {
   addMetaDataAtom,
   scaleIconContentAtom,
   preserveColorsAtom,
+  labelCaseAtom,
 } from "./atoms";
 
 import "!./output.css";
@@ -38,6 +39,7 @@ function Plugin() {
   const [addMetaData, setAddMetaData] = useAtom(addMetaDataAtom);
   const [scaleIconContent, setScaleIconContent] = useAtom(scaleIconContentAtom);
   const [preserveColors, setPreserveColors] = useAtom(preserveColorsAtom);
+  const [labelCase, setLabelCase] = useAtom(labelCaseAtom);
 
   const handleRowInput = useCallback((e: any) => {
     setRows(e.target.value);
@@ -67,6 +69,7 @@ function Plugin() {
       addMetaData: addMetaData,
       scaleIconContent: scaleIconContent,
       preserveColors: preserveColors,
+      labelCase: labelCase,
     };
     emit("SEND", data);
   }, [
@@ -80,6 +83,7 @@ function Plugin() {
     addMetaData,
     scaleIconContent,
     preserveColors,
+    labelCase,
   ]);
 
   const handleSavedData = useCallback(
@@ -94,6 +98,7 @@ function Plugin() {
       addMetaData: boolean;
       scaleIconContent: boolean;
       preserveColors: boolean;
+      labelCase: string;
     }) => {
       if (data) {
         setRows(data.rows || 10);
@@ -106,6 +111,7 @@ function Plugin() {
         setAddMetaData(data.addMetaData || false);
         setScaleIconContent(data.scaleIconContent || false);
         setPreserveColors(data.preserveColors || false);
+        setLabelCase(data.labelCase || "lowercase");
       }
     },
     []

@@ -15,7 +15,8 @@ function buildIconColumn(
   iconSize: string,
   addMetaData: boolean,
   scaleIconContent: boolean,
-  preserveColors: boolean
+  preserveColors: boolean,
+  labelCase: string
 ) {
   const selectedElements = figma.currentPage.selection;
   if (!selectedElements?.length) return;
@@ -49,7 +50,8 @@ function buildIconColumn(
       const iconPlusLabel = attachLabelToIcon(
         item,
         iconDist,
-        label.createInstance()
+        label.createInstance(),
+        labelCase
       );
       iconPlusLabel.name = "icon+label";
       newColumn.appendChild(iconPlusLabel);
@@ -80,7 +82,8 @@ function buildIconColumn(
       workingNode,
       +iconSizeValue,
       scaleIconContent,
-      preserveColors
+      preserveColors,
+      labelCase
     );
 
     if (addMetaData) {
@@ -141,23 +144,24 @@ function recolorNodes(fixedNode: ComponentNode, hexColorValue: string) {
   });
 }
 
-function handleOneNode(
-  selectedElements: any,
-  iconDist: number,
-  label: ComponentNode,
-  xP: any,
-  yP: any,
-  selectionParent: any
-) {
-  const iconPlusLabel = attachLabelToIcon(
-    selectedElements[0],
-    iconDist,
-    label.createInstance()
-  );
-  iconPlusLabel.x = xP;
-  iconPlusLabel.y = yP;
-  selectionParent?.appendChild(iconPlusLabel);
-}
+// function handleOneNode(
+//   selectedElements: any,
+//   iconDist: number,
+//   label: ComponentNode,
+//   xP: any,
+//   yP: any,
+//   selectionParent: any
+// ) {
+//   const iconPlusLabel = attachLabelToIcon(
+//     selectedElements[0],
+//     iconDist,
+//     label.createInstance(),
+//     labelCase
+//   );
+//   iconPlusLabel.x = xP;
+//   iconPlusLabel.y = yP;
+//   selectionParent?.appendChild(iconPlusLabel);
+// }
 
 function createIconFrame() {
   const iconFrame = figma.createFrame();

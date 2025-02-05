@@ -1,12 +1,10 @@
-import { useAtom } from "jotai";
-import { labelCaseAtom } from "../atoms";
-
 export function attachLabelToIcon(
   icon: any,
   spacing: any,
-  labelInstance: InstanceNode
+  labelInstance: InstanceNode,
+  labelCase: string
 ) {
-  const [labelCase] = useAtom(labelCaseAtom);
+  // const [labelCase] = useAtom(labelCaseAtom);
 
   console.log("labelCase", labelCase);
 
@@ -16,8 +14,12 @@ export function attachLabelToIcon(
   }
   labelInstance.y = icon.y;
   labelInstance.x = icon.x + 26;
-  let iconText = icon.name.trim().toLowerCase().replace(/ /g, "-");
+  let iconText =
+    labelCase === "lowercase"
+      ? icon.name.trim().toLowerCase().replace(/ /g, "-")
+      : icon.name.trim().toUpperCase().replace(/ /g, "-");
   icon.name = iconText;
+  console.log("iconText", iconText);
   label.characters = iconText;
   label.fills = [
     {

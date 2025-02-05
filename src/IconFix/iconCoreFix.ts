@@ -33,7 +33,8 @@ export function iconCoreFix(
   node: SceneNode,
   iconSize: number,
   scaleIconContent: boolean,
-  preserveColors: boolean
+  preserveColors: boolean,
+  labelCase: string
 ): ComponentNode {
   let workingNode: ComponentNode;
 
@@ -47,7 +48,11 @@ export function iconCoreFix(
     workingNode = groupToComponent(node, iconSize);
   }
 
-  workingNode.name = workingNode.name.toLowerCase();
+  workingNode.name =
+    labelCase === "lowercase"
+      ? workingNode.name.toLowerCase()
+      : workingNode.name.toUpperCase();
+
   outlineVectors(workingNode);
 
   const flattened = unionAndFlatten(workingNode);

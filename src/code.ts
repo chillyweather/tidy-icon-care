@@ -26,6 +26,7 @@ export default async function () {
       addMetaData,
       scaleIconContent,
       preserveColors,
+      labelCase,
     }: {
       rows: string;
       iconSpacing: string;
@@ -37,6 +38,7 @@ export default async function () {
       addMetaData: boolean;
       scaleIconContent: boolean;
       preserveColors: boolean;
+      labelCase: string;
     }) {
       buildIconColumn(
         +rows,
@@ -48,7 +50,8 @@ export default async function () {
         iconSize,
         addMetaData,
         scaleIconContent,
-        preserveColors
+        preserveColors,
+        labelCase
       );
 
       savePluginData(
@@ -62,7 +65,8 @@ export default async function () {
         iconSize,
         addMetaData,
         scaleIconContent,
-        preserveColors
+        preserveColors,
+        labelCase
       );
     }
   );
@@ -79,7 +83,8 @@ function savePluginData(
   iconSize?: string,
   addMetaData?: boolean,
   scaleIconContent?: boolean,
-  preserveColors?: boolean
+  preserveColors?: boolean,
+  labelCase?: string
 ): void {
   localData.rows = rows;
   localData.iconSpacing = iconSpacing;
@@ -92,4 +97,5 @@ function savePluginData(
   localData.scaleIconContent = scaleIconContent;
   figma.clientStorage.setAsync("params", localData);
   localData.preserveColors = preserveColors;
+  localData.labelCase = labelCase;
 }
