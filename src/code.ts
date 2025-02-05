@@ -5,7 +5,7 @@ const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 };
 export default async function () {
-  showUI({ height: 688, width: 400 });
+  showUI({ height: 788, width: 400 });
   await loadFonts();
   const saveData = await figma.clientStorage.getAsync("params");
   if (saveData) {

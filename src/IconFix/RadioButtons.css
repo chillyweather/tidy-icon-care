@@ -1,0 +1,21 @@
+input[type=radio]::before {
+  content: '';
+  position: relative;
+  padding: 5px;
+  font-size: 0;
+  color: transparent;
+  border: 1px solid #BFC1C7;
+  border-radius: 50%;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+}
+
+input[type=radio]:checked::before {
+  background-color: #5C6CFF;
+  border-color: #5C6CFF;
+  background-repeat: no-repeat;
+  background-size: 8px;
+  background-position: center;
+  background-image: url('data:image/svg+xml,<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="4" fill="white"/></svg>');
+}

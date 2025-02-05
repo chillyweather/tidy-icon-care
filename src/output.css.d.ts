@@ -72,6 +72,7 @@ declare const styles: {
   readonly "hover:outline-black": string;
   readonly "items-center": string;
   readonly "justify-center": string;
+  readonly "lowercase": string;
   readonly "mb-0": string;
   readonly "mb-1": string;
   readonly "mb-2": string;
@@ -139,6 +140,7 @@ declare const styles: {
   readonly "text-xl": string;
   readonly "text-zinc-400": string;
   readonly "text-zinc-500": string;
+  readonly "uppercase": string;
   readonly "visible": string;
   readonly "w-1": string;
   readonly "w-28": string;

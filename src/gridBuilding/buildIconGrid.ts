@@ -31,50 +31,39 @@ function buildIconColumn(
   if (!selectedElements) return;
   const selectionParent = selectedElements[0].parent;
 
-  if (selectedElements.length === 1) {
-    handleOneNode(
-      selectedElements,
-      iconDist,
-      label,
-      coord.x,
-      coord.y,
-      selectionParent
-    );
-  } else if (selectedElements.length > 1) {
-    const elementsArray: any = [];
+  const elementsArray: any = [];
 
-    selectedElements.forEach((item: any) => {
-      elementsArray.push(item);
+  selectedElements.forEach((item: any) => {
+    elementsArray.push(item);
+  });
+
+  sortIcons(elementsArray);
+
+  const iconFrame = createIconFrame();
+
+  const iconGrid = splitArray(elementsArray, rows);
+
+  iconGrid.forEach((group) => {
+    const newColumn = createColumn();
+    group.forEach((item: any) => {
+      const iconPlusLabel = attachLabelToIcon(
+        item,
+        iconDist,
+        label.createInstance()
+      );
+      iconPlusLabel.name = "icon+label";
+      newColumn.appendChild(iconPlusLabel);
     });
+    newColumn.itemSpacing = rowDist;
+    iconFrame.appendChild(newColumn);
+  });
+  iconFrame.itemSpacing = columnDist;
 
-    sortIcons(elementsArray);
-
-    const iconFrame = createIconFrame();
-
-    const iconGrid = splitArray(elementsArray, rows);
-
-    iconGrid.forEach((group) => {
-      const newColumn = createColumn();
-      group.forEach((item: any) => {
-        const iconPlusLabel = attachLabelToIcon(
-          item,
-          iconDist,
-          label.createInstance()
-        );
-        iconPlusLabel.name = "icon+label";
-        newColumn.appendChild(iconPlusLabel);
-      });
-      newColumn.itemSpacing = rowDist;
-      iconFrame.appendChild(newColumn);
-    });
-    iconFrame.itemSpacing = columnDist;
-
-    selectionParent?.appendChild(iconFrame);
-    iconFrame.x = coord.x;
-    iconFrame.y = coord.y;
-    console.log("iconFrame.x", iconFrame.x);
-    console.log("iconFrame.y", iconFrame.y);
-  }
+  selectionParent?.appendChild(iconFrame);
+  iconFrame.x = coord.x;
+  iconFrame.y = coord.y;
+  console.log("iconFrame.x", iconFrame.x);
+  console.log("iconFrame.y", iconFrame.y);
 
   selectedElements.forEach((icon: any) => {
     const iconColors = checkColorsInIcon(icon);

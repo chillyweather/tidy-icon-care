@@ -6,3 +6,4 @@ export const iconSizeAtom = atom<string>("24px");
 export const addMetaDataAtom = atom<boolean>(false);
 export const scaleIconContentAtom = atom<boolean>(false);
 export const preserveColorsAtom = atom<boolean>(false);
+export const labelCaseAtom = atom<string>("lowercase");
