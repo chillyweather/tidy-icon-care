@@ -1,15 +1,24 @@
+import { useAtom } from "jotai";
+import { labelCaseAtom } from "../atoms";
+
 export function attachLabelToIcon(
   icon: any,
   spacing: any,
   labelInstance: InstanceNode
 ) {
+  const [labelCase] = useAtom(labelCaseAtom);
+
+  console.log("labelCase", labelCase);
+
   let label = labelInstance.children[0];
   if (label.type !== "TEXT") {
     label = figma.createText();
   }
   labelInstance.y = icon.y;
   labelInstance.x = icon.x + 26;
-  label.characters = icon.name;
+  let iconText = icon.name.trim().toLowerCase().replace(/ /g, "-");
+  icon.name = iconText;
+  label.characters = iconText;
   label.fills = [
     {
       type: "SOLID",

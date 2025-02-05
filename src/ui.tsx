@@ -13,6 +13,7 @@ import { useAtom } from "jotai";
 import ColorPickerElement from "./IconFix/ColorPicker";
 import SizeDropdown from "./IconFix/Dropdown";
 import CheckBoxElement from "./IconFix/CheckBox";
+import RadioButtonsElement from "./IconFix/RadioButtons";
 import NumInput from "./IconFix/NumInput";
 
 import {
@@ -21,6 +22,7 @@ import {
   iconSizeAtom,
   addMetaDataAtom,
   scaleIconContentAtom,
+  preserveColorsAtom,
 } from "./atoms";
 
 import "!./output.css";
@@ -35,6 +37,7 @@ function Plugin() {
   const [iconSize, setIconSize] = useAtom(iconSizeAtom);
   const [addMetaData, setAddMetaData] = useAtom(addMetaDataAtom);
   const [scaleIconContent, setScaleIconContent] = useAtom(scaleIconContentAtom);
+  const [preserveColors, setPreserveColors] = useAtom(preserveColorsAtom);
 
   const handleRowInput = useCallback((e: any) => {
     setRows(e.target.value);
@@ -63,6 +66,7 @@ function Plugin() {
       iconSize: iconSize,
       addMetaData: addMetaData,
       scaleIconContent: scaleIconContent,
+      preserveColors: preserveColors,
     };
     emit("SEND", data);
   }, [
@@ -75,6 +79,7 @@ function Plugin() {
     iconSize,
     addMetaData,
     scaleIconContent,
+    preserveColors,
   ]);
 
   const handleSavedData = useCallback(
@@ -88,6 +93,7 @@ function Plugin() {
       iconSize: string;
       addMetaData: boolean;
       scaleIconContent: boolean;
+      preserveColors: boolean;
     }) => {
       if (data) {
         setRows(data.rows || 10);
@@ -99,6 +105,7 @@ function Plugin() {
         setIconSize(data.iconSize || "24px");
         setAddMetaData(data.addMetaData || false);
         setScaleIconContent(data.scaleIconContent || false);
+        setPreserveColors(data.preserveColors || false);
       }
     },
     []
@@ -173,59 +180,14 @@ function Plugin() {
           }
         />
 
-        {/* <div style={rowStyle}>
-          <Text>Rows</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleRowInput}
-            value={rows}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Icon spacing ↔️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleIconInput}
-            value={iconSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Row spacing ↕️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleRowsInput}
-            value={rowSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div>
-        <VerticalSpace space="small" />
-        <div style={rowStyle}>
-          <Text>Column spacing ↔️</Text>
-          <TextboxNumeric
-            revertOnEscapeKeyDown
-            integer
-            onInput={handleColumnInput}
-            value={columnSpacing}
-            variant="border"
-            style={{ width: "144px" }}
-          />
-        </div> */}
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
           Icon properties
         </h2>
+        <CheckBoxElement label="Preserve original colors" type="preserve" />
+        <VerticalSpace space="extraSmall" />
         <div style={rowStyle} className={"flex w-60"}>
           <p>Color:</p>
-          <ColorPickerElement hexColor="#ffffff" />
+          <ColorPickerElement isDisabled={preserveColors} />
         </div>
         <div style={rowStyle} className={"flex pt-4 w-60"}>
           <p>Icon size:</p>
@@ -242,6 +204,13 @@ function Plugin() {
         </h2>
         <CheckBoxElement label="Scale icon content" type="scale" />
         <CheckBoxElement label="Add metadata" type="metadata" />
+        <hr
+          className={
+            "border-b border-t-0 border-slate-100 border-solid pt-4 mb-0"
+          }
+        />
+        <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">Label</h2>
+        <RadioButtonsElement />
         <button
           className={
             "bg-indigo-500 text-white font-medium p-3 text-sm rounded-lg outline-blue-200 outline mt-10 hover:bg-indigo-400 active:bg-indigo-600 focus-visible:outline-4"

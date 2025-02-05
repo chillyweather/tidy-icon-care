@@ -5,7 +5,7 @@ const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 };
 export default async function () {
-  showUI({ height: 652, width: 400 });
+  showUI({ height: 788, width: 400 });
   await loadFonts();
   const saveData = await figma.clientStorage.getAsync("params");
   if (saveData) {
@@ -25,6 +25,7 @@ export default async function () {
       iconSize,
       addMetaData,
       scaleIconContent,
+      preserveColors,
     }: {
       rows: string;
       iconSpacing: string;
@@ -35,6 +36,7 @@ export default async function () {
       iconSize: string;
       addMetaData: boolean;
       scaleIconContent: boolean;
+      preserveColors: boolean;
     }) {
       buildIconColumn(
         +rows,
@@ -45,7 +47,8 @@ export default async function () {
         opacity,
         iconSize,
         addMetaData,
-        scaleIconContent
+        scaleIconContent,
+        preserveColors
       );
 
       savePluginData(
@@ -58,7 +61,8 @@ export default async function () {
         opacity,
         iconSize,
         addMetaData,
-        scaleIconContent
+        scaleIconContent,
+        preserveColors
       );
     }
   );
@@ -74,7 +78,8 @@ function savePluginData(
   opacity?: string,
   iconSize?: string,
   addMetaData?: boolean,
-  scaleIconContent?: boolean
+  scaleIconContent?: boolean,
+  preserveColors?: boolean
 ): void {
   localData.rows = rows;
   localData.iconSpacing = iconSpacing;
@@ -86,4 +91,5 @@ function savePluginData(
   localData.addMetaData = addMetaData;
   localData.scaleIconContent = scaleIconContent;
   figma.clientStorage.setAsync("params", localData);
+  localData.preserveColors = preserveColors;
 }

@@ -87,21 +87,13 @@ export default function addComponenetDescription(
         } else if (!currentMisprint && isMisprint) {
           descriptionArray.push(misprint);
         }
-
-        element.description = `${descriptionArray.join("\n")}`;
+        //temporarily simplified
+        element.description = `${isMisprint ? misprint : ""}`;
       } else {
-        element.description = `${isStatus ? status : ""}
-
-        ${isGuidelines ? guideLines : ""}
-
-        ${isMisprint ? misprint : ""}`;
+        element.description = `${isMisprint ? misprint : ""}`;
       }
     } else {
-      element.description = `${isStatus ? status : ""}
-
-      ${isGuidelines ? guideLines : ""}
-
-      ${isMisprint ? misprint : ""}`;
+      element.description = `${isMisprint ? misprint : ""}`;
     }
   }
 }

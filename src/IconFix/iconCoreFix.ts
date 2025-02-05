@@ -32,7 +32,8 @@ const SCALE_FACTORS = {
 export function iconCoreFix(
   node: SceneNode,
   iconSize: number,
-  scaleIconContent: boolean
+  scaleIconContent: boolean,
+  preserveColors: boolean
 ): ComponentNode {
   let workingNode: ComponentNode;
 
