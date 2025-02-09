@@ -33,7 +33,6 @@ export function iconCoreFix(
   node: SceneNode,
   iconSize: number,
   scaleIconContent: boolean,
-  preserveColors: boolean,
   labelCase: string
 ): ComponentNode {
   let workingNode: ComponentNode;
@@ -173,7 +172,6 @@ function unionAndFlatten(workingNode: ComponentNode): ComponentNode {
   }
 
   try {
-    // workingNode.children.forEach((child) => figma.flatten([child]));
     figma.flatten(workingNode.children as VectorNode[]);
   } catch (error) {
     console.log("Error in flatten:", error);

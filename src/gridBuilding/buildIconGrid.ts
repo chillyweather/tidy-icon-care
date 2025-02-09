@@ -1,7 +1,6 @@
 import { attachLabelToIcon } from "./attachLabelToIcon";
 import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
-import { computeMaximumBounds } from "@create-figma-plugin/utilities";
 import { getSelectionGroupCoordinates } from "./getSelectionGroupCoordinates";
 import { checkColorsInIcon } from "./checkColors";
 
@@ -64,8 +63,6 @@ function buildIconColumn(
   selectionParent?.appendChild(iconFrame);
   iconFrame.x = coord.x;
   iconFrame.y = coord.y;
-  console.log("iconFrame.x", iconFrame.x);
-  console.log("iconFrame.y", iconFrame.y);
 
   selectedElements.forEach((icon: any) => {
     const iconColors = checkColorsInIcon(icon);
@@ -82,7 +79,6 @@ function buildIconColumn(
       workingNode,
       +iconSizeValue,
       scaleIconContent,
-      preserveColors,
       labelCase
     );
 
@@ -100,7 +96,7 @@ function buildIconColumn(
 
     parent?.insertChild(0, fixedNode);
 
-    recolorNodes(fixedNode, hexColorValue);
+    !preserveColors && recolorNodes(fixedNode, hexColorValue);
   });
   label.remove();
 }
@@ -143,25 +139,6 @@ function recolorNodes(fixedNode: ComponentNode, hexColorValue: string) {
     }
   });
 }
-
-// function handleOneNode(
-//   selectedElements: any,
-//   iconDist: number,
-//   label: ComponentNode,
-//   xP: any,
-//   yP: any,
-//   selectionParent: any
-// ) {
-//   const iconPlusLabel = attachLabelToIcon(
-//     selectedElements[0],
-//     iconDist,
-//     label.createInstance(),
-//     labelCase
-//   );
-//   iconPlusLabel.x = xP;
-//   iconPlusLabel.y = yP;
-//   selectionParent?.appendChild(iconPlusLabel);
-// }
 
 function createIconFrame() {
   const iconFrame = figma.createFrame();
