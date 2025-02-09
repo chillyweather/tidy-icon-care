@@ -7,6 +7,7 @@ const loadFonts = async () => {
 export default async function () {
   showUI({ height: 788, width: 400 });
   await loadFonts();
+
   const saveData = await figma.clientStorage.getAsync("params");
   if (saveData) {
     emit("SAVED_DATA", saveData);

@@ -2,7 +2,6 @@ import { attachLabelToIcon } from "./attachLabelToIcon";
 import { iconCoreFix } from "../IconFix/iconCoreFix";
 import addComponenetDescription from "../description/add-description/addDescription";
 import { getSelectionGroupCoordinates } from "./getSelectionGroupCoordinates";
-import { checkColorsInIcon } from "./checkColors";
 
 function buildIconColumn(
   rows: number,
@@ -65,8 +64,6 @@ function buildIconColumn(
   iconFrame.y = coord.y;
 
   selectedElements.forEach((icon: any) => {
-    const iconColors = checkColorsInIcon(icon);
-    console.log("iconColors", iconColors);
     let workingNode = icon;
 
     if (icon.type === "INSTANCE") {

@@ -19,7 +19,7 @@ export default function () {
         type={"radio"}
         onChange={handleChange}
         checked={value === "lowercase"}
-        id={"label-case-true"}
+        id={"lowercase"}
         value="lowercase"
       />
       <label for={"label-case-true"}>lowercase</label>
@@ -27,10 +27,18 @@ export default function () {
         type={"radio"}
         onChange={handleChange}
         checked={value === "uppercase"}
-        id={"label-case-false"}
+        id={"uppercase"}
         value="uppercase"
       />
-      <label for={"label-case-false"}>UPPERCASE</label>
+      <label for={"label-case-true"}>UPPERCASE</label>
+      <input
+        type={"radio"}
+        onChange={handleChange}
+        checked={value === "sentence"}
+        id={"sentence"}
+        value="sentence"
+      />
+      <label for={"label-case-false"}>Sentence Case</label>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { vectorToOutline } from "./vectorToOutline";
+import { toSentenceCase } from "./utils";
 import {
   ERROR_COLOR,
   FLATTENING_ERROR_COLOR,
@@ -46,11 +47,6 @@ export function iconCoreFix(
   } else {
     workingNode = groupToComponent(node, iconSize);
   }
-
-  workingNode.name =
-    labelCase === "lowercase"
-      ? workingNode.name.toLowerCase()
-      : workingNode.name.toUpperCase();
 
   outlineVectors(workingNode);
 
