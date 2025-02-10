@@ -23,7 +23,6 @@ const ColorPickerElement = ({ isDisabled }: { isDisabled: boolean }) => {
       hexColor={hexColor.slice(0, 1) === '#' ? hexColor.slice(1) : hexColor}
       onHexColorInput={handleHexColorInput}
       onOpacityInput={handleOpacityInput}
-      // opacity={opacity}
       opacity={opacity.slice(opacity.length - 1, opacity.length) === '%' ? opacity.slice(0, opacity.length - 1) : opacity}
       variant="border"
       disabled={isDisabled}
