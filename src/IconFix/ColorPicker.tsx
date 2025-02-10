@@ -12,6 +12,7 @@ const ColorPickerElement = ({ isDisabled }: { isDisabled: boolean }) => {
   const [opacity, setOpacity] = useAtom(opacityAtom);
   function handleHexColorInput(event: JSX.TargetedEvent<HTMLInputElement>) {
     const newHexColor = event.currentTarget.value;
+    console.log("color: " + hexColor);
     setHexColor(newHexColor);
   }
   function handleOpacityInput(event: JSX.TargetedEvent<HTMLInputElement>) {
@@ -20,7 +21,7 @@ const ColorPickerElement = ({ isDisabled }: { isDisabled: boolean }) => {
   }
   return (
     <MemoizedTextboxColor
-      hexColor={hexColor}
+      hexColor={hexColor.slice(0, 1) === '#' ? hexColor.slice(1) : hexColor}
       onHexColorInput={handleHexColorInput}
       onOpacityInput={handleOpacityInput}
       opacity={opacity}
