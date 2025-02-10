@@ -4,6 +4,7 @@ declare const styles: {
   readonly "_divider_69uub_109": string;
   readonly "_dropdown_l9ibg_1": string;
   readonly "_hexColorInput_69uub_80": string;
+  readonly "_menu_c5se2_1": string;
   readonly "_textboxColor_69uub_1": string;
   readonly "blinkAnim": string;
   readonly "button": string;
