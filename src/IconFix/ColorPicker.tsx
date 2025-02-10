@@ -12,7 +12,6 @@ const ColorPickerElement = ({ isDisabled }: { isDisabled: boolean }) => {
   const [opacity, setOpacity] = useAtom(opacityAtom);
   function handleHexColorInput(event: JSX.TargetedEvent<HTMLInputElement>) {
     const newHexColor = event.currentTarget.value;
-    console.log("color: " + hexColor);
     setHexColor(newHexColor);
   }
   function handleOpacityInput(event: JSX.TargetedEvent<HTMLInputElement>) {
