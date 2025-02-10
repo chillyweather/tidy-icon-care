@@ -22,7 +22,7 @@ export default function () {
         id={"lowercase"}
         value="lowercase"
       />
-      <label for={"label-case-true"}>lowercase</label>
+      <label for={"lowercase"}>lowercase</label>
       <input
         type={"radio"}
         onChange={handleChange}
@@ -30,7 +30,7 @@ export default function () {
         id={"uppercase"}
         value="uppercase"
       />
-      <label for={"label-case-true"}>UPPERCASE</label>
+      <label for={"uppercase"}>UPPERCASE</label>
       <input
         type={"radio"}
         onChange={handleChange}
@@ -38,7 +38,7 @@ export default function () {
         id={"sentence"}
         value="sentence"
       />
-      <label for={"label-case-false"}>Sentence Case</label>
+      <label for={"sentence"}>Sentence Case</label>
     </div>
   );
 }
