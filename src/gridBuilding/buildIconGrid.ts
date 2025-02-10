@@ -72,30 +72,51 @@ function buildIconColumn(
 
     const parent = workingNode.parent;
 
-    const fixedNode = iconCoreFix(
-      workingNode,
-      +iconSizeValue,
-      scaleIconContent,
-      labelCase
-    );
+    let fixedNode;
+    if (workingNode.type !== "COMPONENT_SET") {
+      {
+        fixedNode = iconCoreFix(workingNode, +iconSizeValue, scaleIconContent);
 
-    if (addMetaData) {
-      addComponenetDescription(
-        [fixedNode],
-        true,
-        "🟣 To do",
-        true,
-        true,
-        "replace",
-        hexColor
-      );
+        if (addMetaData) {
+          addComponenetDescription(
+            [fixedNode],
+            true,
+            "🟣 To do",
+            true,
+            true,
+            "replace",
+            hexColor
+          );
+        }
+        parent?.insertChild(0, fixedNode);
+        !preserveColors && recolorNodes(fixedNode, hexColorValue);
+      }
+    } else {
+      fixedNode = handleComponentSet(workingNode, fixedNode, parent);
     }
-
-    parent?.insertChild(0, fixedNode);
-
-    !preserveColors && recolorNodes(fixedNode, hexColorValue);
   });
   label.remove();
+
+  function handleComponentSet(
+    workingNode: ComponentSetNode,
+    fixedNode: any,
+    parent: any
+  ) {
+    const property = Object.keys(workingNode.componentPropertyDefinitions)[0];
+
+    const nodesToFix = workingNode.children;
+    const fixedNodes: ComponentNode[] = [];
+    nodesToFix.forEach((node: any) => {
+      const fNode = iconCoreFix(node, +iconSizeValue, scaleIconContent);
+      const variantName = node.name.split("/")[1];
+      fNode.name = `${property}=${variantName}`;
+      fixedNodes.push(fNode);
+    });
+    fixedNode = figma.combineAsVariants(fixedNodes, figma.currentPage);
+    fixedNode.layoutMode = "VERTICAL";
+    parent?.insertChild(0, fixedNode);
+    return fixedNode;
+  }
 }
 
 function sortIcons(rowsArray: any) {

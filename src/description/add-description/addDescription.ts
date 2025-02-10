@@ -17,6 +17,7 @@ export default function addComponenetDescription(
     "🟢 Completed",
     "⚪️ TBD",
   ];
+  console.log("elements", elements);
   elements.map((element) => {
     const nameArray = element.name.split("");
     const newName = nameArray.map((letter: string) => {

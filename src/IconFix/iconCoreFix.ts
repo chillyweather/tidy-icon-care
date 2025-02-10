@@ -1,5 +1,4 @@
 import { vectorToOutline } from "./vectorToOutline";
-import { toSentenceCase } from "./utils";
 import {
   ERROR_COLOR,
   FLATTENING_ERROR_COLOR,
@@ -33,9 +32,11 @@ const SCALE_FACTORS = {
 export function iconCoreFix(
   node: SceneNode,
   iconSize: number,
-  scaleIconContent: boolean,
-  labelCase: string
+  scaleIconContent: boolean
 ): ComponentNode {
+  // if (node.type === "COMPONENT_SET") {
+  //   return node;
+  // }
   let workingNode: ComponentNode;
 
   if (node.type === "COMPONENT") {

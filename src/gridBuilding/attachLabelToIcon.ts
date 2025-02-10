@@ -14,12 +14,28 @@ export function attachLabelToIcon(
     setLabelProperties(label, iconText);
     return createIconPlusLabelFrame(icon, labelInstance, spacing);
   } else {
+    return componentSetHandler(icon);
+  }
+
+  function componentSetHandler(icon: ComponentSetNode): FrameNode {
+    componentSetNewLayout();
     let label = getOrCreateLabel(labelInstance);
     setPosition(labelInstance, icon);
     const iconText = formatIconText(icon.name, labelCase);
     icon.name = iconText;
     setLabelProperties(label, iconText);
     return createIconPlusLabelFrame(icon, labelInstance, spacing);
+
+    function componentSetNewLayout() {
+      icon.layoutMode = "VERTICAL";
+      icon.counterAxisSizingMode = "AUTO";
+      icon.counterAxisAlignItems = "MIN";
+      icon.itemSpacing = 12;
+      icon.paddingBottom = 8;
+      icon.paddingTop = 8;
+      icon.paddingLeft = 8;
+      icon.paddingRight = 8;
+    }
   }
 }
 
