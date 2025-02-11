@@ -5,7 +5,7 @@ const loadFonts = async () => {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 };
 export default async function () {
-  showUI({ height: 788, width: 400 });
+  showUI({ height: 752, width: 400 });
   await loadFonts();
 
   const saveData = await figma.clientStorage.getAsync("params");
@@ -87,6 +87,7 @@ function savePluginData(
   preserveColors?: boolean,
   labelCase?: string
 ): void {
+  console.log("hexColor to save", hexColor);
   localData.rows = rows;
   localData.iconSpacing = iconSpacing;
   localData.rowSpacing = rowSpacing;

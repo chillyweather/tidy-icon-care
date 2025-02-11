@@ -103,11 +103,14 @@ function buildIconColumn(
     parent: any
   ) {
     const property = Object.keys(workingNode.componentPropertyDefinitions)[0];
+    const name = workingNode.name;
 
     const nodesToFix = workingNode.children;
     const fixedNodes: ComponentNode[] = [];
     nodesToFix.forEach((node: any) => {
       const fNode = iconCoreFix(node, +iconSizeValue, scaleIconContent);
+      console.log("hexColorValue", hexColorValue);
+      !preserveColors && recolorNodes(fNode, hexColorValue);
       const variantName = node.name.split("/")[1];
       fNode.name = `${property}=${variantName}`;
       fixedNodes.push(fNode);
@@ -115,6 +118,7 @@ function buildIconColumn(
     fixedNode = figma.combineAsVariants(fixedNodes, figma.currentPage);
     fixedNode.layoutMode = "VERTICAL";
     parent?.insertChild(0, fixedNode);
+    fixedNode.name = name;
     return fixedNode;
   }
 }

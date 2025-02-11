@@ -189,8 +189,8 @@ function Plugin() {
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
           Icon properties
         </h2>
-        <CheckBoxElement label="Preserve original colors" type="preserve" />
-        <VerticalSpace space="extraSmall" />
+        {/* <CheckBoxElement label="Preserve original colors" type="preserve" />
+        <VerticalSpace space="extraSmall" /> */}
         <div style={rowStyle} className={"flex w-60"}>
           <p>Color:</p>
           <ColorPickerElement isDisabled={preserveColors} />
