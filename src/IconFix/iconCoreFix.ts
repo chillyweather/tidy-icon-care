@@ -17,16 +17,16 @@ let BUILDING_ERROR: BuildingErrorType = null;
 
 const ICON_SIZES = {
   SMALL: 16,
-  MEDIUM: 20,
-  LARGE: 24,
-  EXTRA_LARGE: 32,
+  MEDIUM: 24,
+  LARGE: 32,
+  EXTRA_LARGE: 48,
 };
 
 const SCALE_FACTORS = {
   [ICON_SIZES.SMALL]: 14,
-  [ICON_SIZES.MEDIUM]: 18,
-  [ICON_SIZES.LARGE]: 20,
-  [ICON_SIZES.EXTRA_LARGE]: 24,
+  [ICON_SIZES.MEDIUM]: 20,
+  [ICON_SIZES.LARGE]: 26,
+  [ICON_SIZES.EXTRA_LARGE]: 40,
 };
 
 export function iconCoreFix(
@@ -34,9 +34,6 @@ export function iconCoreFix(
   iconSize: number,
   scaleIconContent: boolean
 ): ComponentNode {
-  // if (node.type === "COMPONENT_SET") {
-  //   return node;
-  // }
   let workingNode: ComponentNode;
 
   if (node.type === "COMPONENT") {
@@ -253,9 +250,13 @@ function resizeIconContent(
   flatVector.name = "ic";
 
   if (scaleIconContent) {
+    console.log("iconSize", iconSize);
+    console.log("SCALE_FACTORS", SCALE_FACTORS);
+    console.log("SCALE_FACTORS[iconSize]", SCALE_FACTORS[iconSize]);
     const scaleFactor =
       SCALE_FACTORS[iconSize as keyof typeof SCALE_FACTORS] || 1;
     const scale = scaleFactor / Math.max(flatVector.width, flatVector.height);
+    console.log("scaleFactor", scaleFactor);
     flatVector.resize(flatVector.width * scale, flatVector.height * scale);
   }
 
