@@ -164,14 +164,14 @@ function Plugin() {
           </div>
           <div className={"flex gap-3"}>
             <NumInput
-              label="Rows gutter"
+              label="Rows gutter (px)"
               icon="row-gutter"
               min="0"
               value={rowSpacing}
               setValue={setRowSpacing}
             ></NumInput>
             <NumInput
-              label="Columns gutter"
+              label="Columns gutter (px)"
               icon="col-gutter"
               min="0"
               value={columnSpacing}
@@ -189,11 +189,11 @@ function Plugin() {
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
           Icon properties
         </h2>
-        <div style={rowStyle} className={"flex w-60"}>
+        <div className={"flex flex-col gap-2 w-60"}>
           <p>Color:</p>
           <ColorPickerElement isDisabled={preserveColors} />
         </div>
-        <div style={rowStyle} className={"flex pt-4 w-60"}>
+        <div className={"flex  flex-col gap-2 pt-4 w-60"}>
           <p>Icon size:</p>
           <SizeDropdown />
         </div>
@@ -239,12 +239,12 @@ function Plugin() {
 
   return (
     <Container space="medium">
-      <div className={"flex flex-col gap-2"}>
+      {/* <div className={"flex flex-col gap-2"}>
         <h2 className="font-medium text-sm text-slate-700 pt-5">Some text</h2>
         <p className={"text-zinc-500"}>
           We need short description for Tidy icons care
         </p>
-      </div>
+      </div> */}
 
       {LayoutSettings}
     </Container>

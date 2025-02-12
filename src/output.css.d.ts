@@ -55,6 +55,7 @@ declare const styles: {
   readonly "font-bold": string;
   readonly "font-medium": string;
   readonly "font-semibold": string;
+  readonly "gap-1": string;
   readonly "gap-2": string;
   readonly "gap-3": string;
   readonly "gap-4": string;
