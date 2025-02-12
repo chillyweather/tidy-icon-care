@@ -44,7 +44,7 @@ const NumInput = ({
           placeholder={label}
           className={"w-full"}
           min={parseInt(min)}
-          onChange={handleValueChange}
+          onBlur={handleValueChange}
         />
       </div>
     </div>
