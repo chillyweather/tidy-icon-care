@@ -119,6 +119,21 @@ function buildIconColumn(
     fixedNode.layoutMode = "VERTICAL";
     parent?.insertChild(0, fixedNode);
     fixedNode.name = name;
+    fixedNode.strokeWeight = 1;
+    fixedNode.strokes = [
+      {
+        type: "SOLID",
+        visible: true,
+        opacity: 1,
+        blendMode: "NORMAL",
+        color: {
+          r: 0.5921568870544434,
+          g: 0.27843138575553894,
+          b: 1,
+        },
+        boundVariables: {},
+      },
+    ];
     return fixedNode;
   }
 }

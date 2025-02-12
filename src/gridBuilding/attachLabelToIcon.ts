@@ -24,20 +24,7 @@ export function attachLabelToIcon(
     const iconText = formatIconText(icon.name, labelCase);
     icon.name = iconText;
     setLabelProperties(label, iconText);
-    icon.strokes = [
-      {
-        type: "SOLID",
-        visible: true,
-        opacity: 1,
-        blendMode: "NORMAL",
-        color: {
-          r: 0.5921568870544434,
-          g: 0.27843138575553894,
-          b: 1,
-        },
-        boundVariables: {},
-      },
-    ];
+    console.log("icon.type", icon.type);
     return createIconPlusLabelFrame(icon, labelInstance, spacing);
 
     function componentSetNewLayout() {
