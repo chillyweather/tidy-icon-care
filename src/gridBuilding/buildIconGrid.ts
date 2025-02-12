@@ -109,9 +109,8 @@ function buildIconColumn(
     const fixedNodes: ComponentNode[] = [];
     nodesToFix.forEach((node: any) => {
       const fNode = iconCoreFix(node, +iconSizeValue, scaleIconContent);
-      console.log("hexColorValue", hexColorValue);
       !preserveColors && recolorNodes(fNode, hexColorValue);
-      const variantName = node.name.split("/")[1];
+      const variantName = node.name.split("/").pop();
       fNode.name = `${property}=${variantName}`;
       fixedNodes.push(fNode);
     });
