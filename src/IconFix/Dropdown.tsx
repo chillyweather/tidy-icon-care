@@ -33,7 +33,7 @@ function SizeDropdown({ disabled }: { disabled?: boolean }) {
       value={value}
       variant="border"
       disabled={disabled}
-      style={{ width: "144px" }}
+      style={{ width: "175px" }}
     />
   );
 }

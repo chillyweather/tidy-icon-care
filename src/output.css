@@ -692,6 +692,10 @@ video {
   justify-content: center;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -710,10 +714,6 @@ video {
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .rounded {
@@ -1218,10 +1218,20 @@ video {
   padding-left: 4px;
   height: 16px;
   margin-top: 6px;
-  width: 64px;
-  max-width: 64px;
+  /* width: 64px; */
+  /* max-width: 64px; */
+  width: 100%;
   --tw-border-opacity: 1 !important;
   border-color: rgb(203 213 225 / var(--tw-border-opacity)) !important;
+}
+
+._textboxColor_69uub_1 {
+  width: 100%;
+}
+
+._divider_69uub_109 {
+  left: unset;
+  right: 0;
 }
 
 ._textboxColor_69uub_1>._color_69uub_13 {

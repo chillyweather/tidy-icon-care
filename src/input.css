@@ -136,9 +136,19 @@
   padding-left: 4px;
   height: 16px;
   margin-top: 6px;
-  width: 64px;
-  max-width: 64px;
+  /* width: 64px; */
+  /* max-width: 64px; */
+  width: 100%;
   @apply !border-slate-300;
+}
+
+._textboxColor_69uub_1 {
+  width: 100%;
+}
+
+._divider_69uub_109 {
+  left: unset;
+  right: 0;
 }
 
 ._textboxColor_69uub_1>._color_69uub_13 {
