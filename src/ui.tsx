@@ -155,7 +155,7 @@ function Plugin() {
               setValue={setRows}
             ></NumInput>
             <NumInput
-              label="Label spacing"
+              label="Label spacing (px)"
               icon="spacing"
               min="0"
               value={iconSpacing}
@@ -189,10 +189,7 @@ function Plugin() {
         <h2 className="font-medium text-sm text-slate-700 pb-4 pt-4">
           Icon properties
         </h2>
-        <div
-          className={"flex flex-col gap-2 w-60"}
-          style={{ width: "175px" }}
-        >
+        <div className={"flex flex-col gap-2 w-60"} style={{ width: "175px" }}>
           <p>Color:</p>
           <ColorPickerElement isDisabled={preserveColors} />
         </div>
